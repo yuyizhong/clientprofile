@@ -24,5 +24,6 @@ SHEET = GSPREAD_CLIENT.open('Client-Book')
 clients = SHEET.worksheet('clients')
 
 data = clients.get_all_values()
+table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
 
-print(tabulate(data, headers="firstrow", tablefmt="grid", colalign="left"))
+print(f"{Back.RED}{table}")
