@@ -1,5 +1,14 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from tabulate import tabulate
+# import pyfiglet module for ascii art
+import pyfiglet
+
+# import colorama for adding colour
+import colorama
+from colorama import Fore, Back, Style 
+colorama.init(autoreset=True)
+
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -16,4 +25,4 @@ clients = SHEET.worksheet('clients')
 
 data = clients.get_all_values()
 
-print(data)
+print(tabulate(data, headers="firstrow", tablefmt="grid", colalign="left"))
