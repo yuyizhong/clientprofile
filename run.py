@@ -65,8 +65,11 @@ def add_client(list):
             if validate_spend(spend):
                 break        
         return spend
-
-        new_client = [fname, lname, dob, tel, email, spend]
+        if spend >= 35000.0:
+            type = "VIP"
+        else:
+            type = "Regular"
+        new_client = [fname, lname, dob, tel, email, spend, type]
         # Add the list of new client's information to the clients sheet
         list.append(new_client)
         print(f"{Back.GREEN}{Fore.WHITE}client{fname}{lname} is now added to the Client Book.\n")
@@ -81,9 +84,8 @@ def validate_spend(value):
 
     try:
         [float(value) for value in values]
-        if len(values) != 6:
-            raise ValueError(
-                f"Exactly 6 values are required, you provided {len(values)}")
+        
+
 
     except ValueError as e:
         print(f"Invalid data: {e}, please try again\n")
