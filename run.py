@@ -174,10 +174,11 @@ def update_client(worksheet):
     exist = False  
     for index in range(len(list)):
         if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
-
-            # Options to edit client's name
-            edit_name = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s name? Y or N{Fore.RESET}:\n").lower()
             exist = True
+
+            # Option to edit client's name
+            edit_name = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s name? Y or N{Fore.RESET}:\n").lower()
+            
             if edit_name == "y":
                 new_fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT} updated First Name{Style.RESET_ALL}:\n").capitalize()
                 new_lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT} updated Last Name{Style.RESET_ALL}:\n").capitalize()
@@ -194,27 +195,120 @@ def update_client(worksheet):
             else:
                 print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
                 update_client(worksheet)
-
-            # Options to edit client's date of birth
+            
+            # Option to edit client's date of birth
             edit_dob = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s Date of Birth? Y or N{Fore.RESET}:\n").lower()
-            exist = True
+            
             if edit_dob == "y":
                 new_dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
                 row = index + 1
                 worksheet.update_cell(row,3, new_dob)                
                 print(f"{Back.YELLOW}{Fore.BLACK}client's Date of Birth is now updated as {new_dob} at Client Book.\n")
-                break
+                
             
             elif edit_dob == "n":
                 print(f"{Back.GREEN}{Fore.BLACK}You select N, move to next option")
+                
+            
+            else:
+                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+                update_client(worksheet)
+
+            # Option to edit client's Contact Number
+            edit_tel = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s Contact Number? Y or N{Fore.RESET}:\n").lower()
+            
+            if edit_tel == "y":
+                new_tel = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated Contact Number{Style.RESET_ALL}:\n")
+                row = index + 1
+                worksheet.update_cell(row,4, new_tel)                
+                print(f"{Back.YELLOW}{Fore.BLACK}client's Contact Number is now updated as {new_tel} at Client Book.\n")
+                
+            
+            elif edit_tel == "n":
+                print(f"{Back.GREEN}{Fore.BLACK}You select N, move to next option")
+                
+            
+            else:
+                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+                update_client(worksheet)
+
+            # Option to edit client's Email
+            edit_email = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s Email? Y or N{Fore.RESET}:\n").lower()
+            
+            if edit_email == "y":
+                new_email = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated Email{Style.RESET_ALL}:\n")
+                row = index + 1
+                worksheet.update_cell(row,5, new_email)                
+                print(f"{Back.YELLOW}{Fore.BLACK}client's Email is now updated as {new_email} at Client Book.\n")
+                
+            
+            elif edit_email == "n":
+                print(f"{Back.GREEN}{Fore.BLACK}You select N, move to next option")
+                
+            
+            else:
+                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+                update_client(worksheet)
+
+            # Option to update client's spend by adding the new spend to the total spend
+            # Update the client type according to new total spend
+            edit_spend = input(f"{Fore.YELLOW}Do you want to add client {fname} {lname}'s New Spend? Y or N{Fore.RESET}:\n").lower()
+            
+            if edit_spend == "y":
+                while True:
+                    new_spend= input(f"{Fore.CYAN}Please enter {Style.BRIGHT}the new Spend amount{Style.RESET_ALL}:\n")
+                    if validate_spend(new_spend):
+                        break 
+                old_total_spend = list[index][5]
+                total_spend = float(old_total_spend) + float(new_spend)
+                row = index + 1
+                worksheet.update_cell(row,6, total_spend)
+                if total_spend >= 35000:
+                    type = "VIP"
+                else:
+                    type = "Regular"
+                worksheet.update_cell(row,7, type)
+
+                print(f"{Back.YELLOW}{Fore.BLACK}client's Total Spend is now updated as {total_spend} at Client Book.\n")
+
+                break
+            
+            elif edit_spend == "n":
+                print(f"{Back.GREEN}{Fore.BLACK}You select N, no other option to update!")
                 break
             
             else:
                 print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
                 update_client(worksheet)
+            
     
     if not exist:
         print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+
+
+
+
+def update_options(num):
+
+    """ options for user to choose when updating client information"""     
+
+            
+    edit_choice = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s {option}? Y or N{Fore.RESET}:\n").lower()
+            
+    if edit_choice == "y":
+        new_data = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated option {Fore.YELLOW}if it is a date please formatted as dd/mm/yyyy{Style.RESET_ALL}:\n")
+        row = index + 1
+        worksheet.update_cell(row,num, new_data)                
+        print(f"{Back.YELLOW}{Fore.BLACK}client's option is now updated as {new_data} at Client Book.\n")
+                
+            
+    elif edit_dob == "n":
+        print(f"{Back.GREEN}{Fore.BLACK}You select N, move to next option")
+                
+            
+    else:
+        print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+        update_client(worksheet)
 
 
 update_client(clients)
