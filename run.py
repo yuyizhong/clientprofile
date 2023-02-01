@@ -113,16 +113,16 @@ def delete_client(worksheet):
     exist = False  
     for index in range(len(list)):
         if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
-            choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
+            delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
             exist = True
-            if choice == "y":
+            if delete_choice == "y":
                 num=index+1
                 worksheet.delete_rows(num)
                 
                 print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")
                 break
             
-            elif choice == "n":
+            elif delete_choice == "n":
                 print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")
                 break
             
@@ -154,13 +154,48 @@ def check_client(worksheet):
         return False
         
 
-add_client(clients)
+# add_client(clients)
 
             
 
 
-# def update_client(worksheet):
+def update_client(worksheet):
 
-#     """3. Update client personal information"""
+    """3. Update client personal information"""
+
+    # Get user to input client's name and D.o.B
+    fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
+    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+    dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+    list = worksheet.get_all_values()
+
+    # Search client, if exist, confirm edit options and update client informatio accordingly, otherwise print error message
+    exist = False  
+    for index in range(len(list)):
+        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+            edit_name = input(f"{Fore.YELLOW}Do you want to update client's {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
+            exist = True
+            if edit_name == "y":
+                 new_fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated First Name{Style.RESET_ALL}:\n").capitalize()
+    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+
+                num=index+1
+                worksheet.delete_rows(num)
+                
+                print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")
+                break
+            
+            elif delete_choice == "n":
+                print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")
+                break
+            
+            else:
+                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+                delete_client(worksheet)
+
+    
+    if not exist:
+        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+
 
     
