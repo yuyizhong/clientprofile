@@ -89,7 +89,7 @@ def validate_spend(value):
         return False
 
     return True
-    
+
 
 def check_client(worksheet, fname, lname, dob, list):
 
@@ -99,7 +99,8 @@ def check_client(worksheet, fname, lname, dob, list):
     for index in range(len(list)):
         if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
             print(f"{Back.RED}{Fore.WHITE}Client is exist!{Style.RESET_ALL}\n")
-            return True
+            
+            return True, index
             break
     
     if not exist:
@@ -118,25 +119,26 @@ def delete_client(worksheet):
     list = worksheet.get_all_values()
 
     # Search client, confirm delete decision and delete client, otherwise print error message
-    exist = False  
-    for index in range(len(list)):
-        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
-            delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
-            exist = True
-            if delete_choice == "y":
-                num=index+1
-                worksheet.delete_rows(num)
+    check_results = check_client(worksheet, fname, lname, dob, list)
+    
+    exist = check_results[0] 
+    if exist == True:                  
+    
+        delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
+        
+        if delete_choice == "y":
+            index = check_results[1]
+            num=index+1
+            worksheet.delete_rows(num)
                 
-                print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")
-                break
+            print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")            
             
-            elif delete_choice == "n":
-                print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")
-                break
+        elif delete_choice == "n":
+            print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")    
             
-            else:
-                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
-                delete_client(worksheet)
+        else:
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+            delete_client(worksheet)
 
     if not exist:
         print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
@@ -145,7 +147,7 @@ def delete_client(worksheet):
 
 
 
-add_client(clients)
+delete_client(clients)
 
             
 
