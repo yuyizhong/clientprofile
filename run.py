@@ -215,7 +215,7 @@ def update_client(worksheet):
                 update_client(worksheet)
 
             # Option to edit client's Contact Number
-            edit_tel = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s Contact Number? Y or N{Fore.RESET}:\n").lower()
+            edit_tel = str(input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s Contact Number? Y or N{Fore.RESET}:\n").lower())
             
             if edit_tel == "y":
                 new_tel = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated Contact Number{Style.RESET_ALL}:\n")
