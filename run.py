@@ -47,22 +47,25 @@ def add_client(worksheet):
 
     """1.Add New Client"""
 
-    # Get Client's name and D.o.B
-    fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
-    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
-    dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
-    list = worksheet.get_all_values()
-    # Check if Client is already in the list.
-    exist = False  
-    for index in range(len(list)):
-        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
-            print(f"{Back.RED}{Fore.WHITE}Client is exist! {Style.BRIGHT}Please enter again!!{Style.RESET_ALL}\n")
-            exist = True
-            break
-    # If not in the list, get client contact number, email and spend
-    # If spend enter is valid then update client Type accordingly   
+    # # Get Client's name and D.o.B
+    # fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
+    # lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+    # dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+    # list = worksheet.get_all_values()
+    # # Check if Client is already in the list.
+    # exist = False  
+    # for index in range(len(list)):
+    #     if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+    #         print(f"{Back.RED}{Fore.WHITE}Client is exist! {Style.BRIGHT}Please enter again!!{Style.RESET_ALL}\n")
+    #         exist = True
+    #         break
+    # # If not in the list, get client contact number, email and spend
+    # # If spend enter is valid then update client Type accordingly   
 
-    if not exist:
+    # if not exist:
+    
+    exist = check_client(worksheet)    
+    if exist == False:
         tel = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Contact Number{Style.RESET_ALL}:\n")
         email = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Email{Style.RESET_ALL}:\n").lower()
         while True:
@@ -100,7 +103,7 @@ def delete_client(worksheet):
 
     """2. Delete client"""
 
-     # Get user to input client's name and D.o.B
+    # Get user to input client's name and D.o.B
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
@@ -131,4 +134,33 @@ def delete_client(worksheet):
     if not exist:
         print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
 
-delete_client(clients)
+def check_client(worksheet):
+    """Get user input to check if client is exist"""
+     # Get Client's name and D.o.B
+    fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
+    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+    dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+    list = worksheet.get_all_values()
+    # Check if Client is already in the list.
+    exist = False  
+    for index in range(len(list)):
+        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+            print(f"{Back.RED}{Fore.WHITE}Client is exist!{Style.RESET_ALL}\n")
+            return True
+            break
+    
+    if not exist:
+        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+        return False
+        
+
+add_client(clients)
+
+            
+
+
+# def update_client(worksheet):
+
+#     """3. Update client personal information"""
+
+    
