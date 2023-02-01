@@ -32,22 +32,26 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('Client-Book')
 
-# clients = SHEET.worksheet('clients')
+clients = SHEET.worksheet('clients')
 
-# data = clients.get_all_values()
+
+
+
 # table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
 
 # # print(f"{Back.RED}{table}")
 # dob= data[1][2]
 # print(type(dob))
 
-def add_client(list):
+def add_client(worksheet):
+
     """1.Add New Client"""
+
     # Get Client's name and D.o.B
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
-   
+    list = worksheet.get_all_values()
     # Check if Client is already in the list.
     exist = False  
     for index in range(len(list)):
@@ -57,40 +61,74 @@ def add_client(list):
             break
     # If not in the list, get client contact number, email and spend
     # If spend enter is valid then update client Type accordingly   
+
     if not exist:
         tel = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Contact Number{Style.RESET_ALL}:\n")
-        email = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Email{Style.RESET_ALL}:\n")
+        email = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Email{Style.RESET_ALL}:\n").lower()
         while True:
             spend = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}client's spend amount in Sterling Pounds{Style.RESET_ALL}:\n")
             if validate_spend(spend):
-                break        
-        return spend
-        if spend >= 35000.0:
+               break        
+        fspend = float(spend) 
+        if fspend >= 35000.0:
             type = "VIP"
         else:
             type = "Regular"
-        new_client = [fname, lname, dob, tel, email, spend, type]
+        new_client = [fname, lname, dob, tel, email, fspend, type]
         # Add the list of new client's information to the clients sheet
-        list.append(new_client)
-        print(f"{Back.GREEN}{Fore.WHITE}client{fname}{lname} is now added to the Client Book.\n")
+        worksheet.append_row(new_client)        
+        print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now added to the Client Book.\n")
 
 def validate_spend(value):
     """
-    Inside the try, converts all string values into floats.
-    And add the float to the previous total spend
-    Raises ValueError if strings cannot be converted into float.
+    Inside the try, converts value into float.
+    Raises ValueError if string cannot be converted into float.
     
     """
-
     try:
-        [float(value) for value in values]
-        
-
-
+        spend_num = float(value)
+        print(f"{Back.GREEN}{Fore.BLACK}Number entered is valid.")
     except ValueError as e:
-        print(f"Invalid data: {e}, please try again\n")
+        print(f"{Back.RED}{Fore.WHITE}Not a number: {e}, please try again\n")
         return False
 
     return True
 
 
+
+def delete_client(worksheet): 
+
+    """2. Delete client"""
+
+     # Get user to input client's name and D.o.B
+    fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
+    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+    dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+    list = worksheet.get_all_values()
+
+    # Search client, confirm delete decision and delete client, otherwise print error message
+    exist = False  
+    for index in range(len(list)):
+        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+            choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
+            exist = True
+            if choice == "y":
+                num=index+1
+                worksheet.delete_rows(num)
+                
+                print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")
+                break
+            
+            elif choice == "n":
+                print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")
+                break
+            
+            else:
+                print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+                delete_client(worksheet)
+
+    
+    if not exist:
+        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+
+delete_client(clients)
