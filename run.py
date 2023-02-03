@@ -242,4 +242,35 @@ def update_options(worksheet, fname, lname, index, num):
         update_client(worksheet)
 
 
-update_client(clients)
+def get_all_clients(worksheet, type):
+
+    """4. List all the clients' details"""
+    # Option to list Regular clients
+
+    # Option to list VIP clients
+    type = input(f"{Fore.YELLOW}Please choose the type of the clients you like to view? Regular or VIP{Fore.RESET}:\n").capitalize()
+    list = worksheet.get_all_values()
+    
+    data = []
+    for index in range(len(list)):
+        if list[index][6] == "type":
+            f=list(list[index])
+            data.insert(-1, f)
+    print(data)
+    
+
+
+# # # print(f"{Back.RED}{table}")    
+#     if list_choice == "y":
+        
+                
+#         print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now deleted from Client Book.\n")            
+            
+#     elif delete_choice == "n":
+#         print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")    
+            
+#     else:
+#         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+#         delete_client(worksheet)
+
+get_all_clients(clients, type)
