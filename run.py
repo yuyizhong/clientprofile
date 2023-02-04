@@ -76,7 +76,7 @@ def add_client(worksheet):
                break        
         fspend = float(spend) 
         if fspend >= 35000.0:
-            type = "VIP"
+            type = "Vip"
         else:
             type = "Regular"
         new_client = [fname, lname, dob, tel, email, fspend, type]
@@ -117,15 +117,15 @@ def check_client(worksheet, fname, lname, dob, list):
         
         
 
-def delete_client(worksheet): 
+def delete_client(worksheet, fname, lname, dob): 
 
     """2. Delete client"""
 
     # Get user to input client's name and D.o.B    
-    initial_data = get_initial_data()
-    fname=initial_data[0]
-    lname=initial_data[1]
-    dob=initial_data[2]
+    # initial_data = get_initial_data()
+    # fname=initial_data[0]
+    # lname=initial_data[1]
+    # dob=initial_data[2]
     list = worksheet.get_all_values()
 
     # Search client, confirm delete decision and delete client, otherwise print error message
@@ -197,7 +197,7 @@ def update_client(worksheet):
 
             # Update the client type according to new total spend
             if total_spend >= 35000:
-                type = "VIP"
+                type = "Vip"
             else:
                 type = "Regular"
             worksheet.update_cell(row,7, type)
@@ -247,16 +247,29 @@ def get_all_clients(worksheet, type):
     """4. List all the clients' details"""
     # Option to list Regular clients
 
-    # Option to list VIP clients
-    type = input(f"{Fore.YELLOW}Please choose the type of the clients you like to view? Regular or VIP{Fore.RESET}:\n").capitalize()
+    # Option to list Vip clients
+    type = input(f"{Fore.YELLOW}Please choose the type of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
+    
     list = worksheet.get_all_values()
+    print(list)
     
     data = []
     for index in range(len(list)):
-        if list[index][6] == "type":
-            f=list(list[index])
-            data.insert(-1, f)
+
+        if (list[index][6] == "type"):            
+            row=list[index]
+            print(row)
+            data.append(row)            
+        else:
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+            get_all_clients(worksheet, type)
     print(data)
+    # table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
+    # print(f"{Back.RED}{table}")
+
+
+
+    
     
 
 
@@ -273,4 +286,19 @@ def get_all_clients(worksheet, type):
 #         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
 #         delete_client(worksheet)
 
-get_all_clients(clients, type)
+# get_all_clients(clients, type)
+
+
+def main (worksheet):
+    """Run all the management functions"""
+    initial_data = get_initial_data()
+    fname=initial_data[0]
+    lname=initial_data[1]
+    dob=initial_data[2]
+    delete_client(worksheet, fname, lname, dob)
+
+main(clients)
+
+
+
+# delete_client(clients)
