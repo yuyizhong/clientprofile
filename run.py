@@ -41,7 +41,7 @@ clients = SHEET.worksheet('clients')
 
 # # print(f"{Back.RED}{table}")
 # dob= data[1][2]
-# print(type(dob))
+# print(status(dob))
 
 def get_initial_data():
     # Get Client's name and D.o.B
@@ -64,7 +64,7 @@ def add_client(worksheet):
 
     # Check if Client is already in the list.    
     # if not exist: get personal information and add to the list
-    # Auto set the client type according to the spend amount
+    # Auto set the client status according to the spend amount
     
     exist = check_client(worksheet, fname, lname, dob, list)    
     if exist == False:
@@ -76,10 +76,10 @@ def add_client(worksheet):
                break        
         fspend = float(spend) 
         if fspend >= 35000.0:
-            type = "Vip"
+            status = "Vip"
         else:
-            type = "Regular"
-        new_client = [fname, lname, dob, tel, email, fspend, type]
+            status = "Regular"
+        new_client = [fname, lname, dob, tel, email, fspend, status]
         # Add the list of new client's information to the clients sheet
         worksheet.append_row(new_client)        
         print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is now added to the Client Book.\n")
@@ -114,6 +114,7 @@ def check_client(worksheet, fname, lname, dob, list):
     
     if not exist:
         print (f"{Back.RED}{Fore.WHITE}Client dose not exist!{Style.RESET_ALL}\n")
+        return False
         
         
 
@@ -195,13 +196,13 @@ def update_client(worksheet):
             row = index + 1
             worksheet.update_cell(row,6, total_spend)
 
-            # Update the client type according to new total spend
+            # Update the client status according to new total spend
             if total_spend >= 35000:
-                type = "Vip"
+                status = "Vip"
             else:
-                type = "Regular"
-            worksheet.update_cell(row,7, type)
-            print(f"{Back.YELLOW}{Fore.BLACK}{type} client's Total Spend is now updated as {total_spend} at Client Book.\n")
+                status = "Regular"
+            worksheet.update_cell(row,7, status)
+            print(f"{Back.YELLOW}{Fore.BLACK}{status} client's Total Spend is now updated as {total_spend} at Client Book.\n")
             
         elif edit_spend == "n":
             print(f"{Back.GREEN}{Fore.BLACK}You select N, no other option to update!")            
@@ -242,30 +243,39 @@ def update_options(worksheet, fname, lname, index, num):
         update_client(worksheet)
 
 
-def get_all_clients(worksheet, type):
+def get_all_clients(worksheet):
 
     """4. List all the clients' details"""
     # Option to list Regular clients
-
     # Option to list Vip clients
-    type = input(f"{Fore.YELLOW}Please choose the type of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
-    
-    list = worksheet.get_all_values()
-    print(list)
-    
+    # Option to list All clients
+    status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
+    print(status)
+    list = worksheet.get_all_values() 
+       
     data = []
-    for index in range(len(list)):
+    
+    for index in range(len(list)):        
+           
+        if list[index][6] == status:                      
+            row=list[index]            
+            data.append(row)
+    return data
 
-        if (list[index][6] == "type"):            
-            row=list[index]
-            print(row)
-            data.append(row)            
-        else:
-            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
-            get_all_clients(worksheet, type)
-    print(data)
+def clients_list(worksheet):
+
+        client_list=get_all_clients(worksheet)
+        table = tabulate(client_list, headers="firstrow", tablefmt="grid", colalign="left")
+        print(f"{Back.RED}{table}") 
+
+    # else:
+    #         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+    #         status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
+    #     # get_all_clients(worksheet)
+    
     # table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
     # print(f"{Back.RED}{table}")
+clients_list(clients)
 
 
 
@@ -286,7 +296,7 @@ def get_all_clients(worksheet, type):
 #         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
 #         delete_client(worksheet)
 
-# get_all_clients(clients, type)
+# get_all_clients(clients)
 
 
 def main (worksheet):
@@ -297,8 +307,7 @@ def main (worksheet):
     dob=initial_data[2]
     delete_client(worksheet, fname, lname, dob)
 
-main(clients)
+# main(clients)
 
 
 
-# delete_client(clients)
