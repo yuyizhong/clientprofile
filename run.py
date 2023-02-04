@@ -255,6 +255,7 @@ def get_all_clients(worksheet):
     
     if status == "Regular" or status == "Vip":
         data = []
+        print("-------------------")
         for index in range(len(list)):        
            
             if list[index][6] == status:                      
@@ -262,15 +263,15 @@ def get_all_clients(worksheet):
                 data.append(row)                
         table = tabulate(data, tablefmt="grid")
         print(f"{Back.RED}{table}")        
-    
+        print("-------------------")
     elif status == "All":
+        print("-------------------")
         all_table = tabulate(list, tablefmt="grid")
         print(f"{Back.RED}{all_table}")
+        print("-------------------")
     else:
         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
         get_all_clients(worksheet)
-
-
 
 # get_all_clients(clients)
     
@@ -289,13 +290,8 @@ def get_all_clients(worksheet):
 #         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
 #         delete_client(worksheet)
 
-# get_all_clients(clients)
 
-def access_client(worksheet):
-    
-
-
-def main (worksheet):
+def main(worksheet):
     """Run all the management functions"""
     initial_data = get_initial_data()
     fname=initial_data[0]
@@ -303,7 +299,31 @@ def main (worksheet):
     dob=initial_data[2]
     delete_client(worksheet, fname, lname, dob)
 
-# main(clients)
 
 
+def access_clients(worksheet):
+    """Search client and display all the information"""
+    # Get user to input client's name
+    print(f"{Fore.CYAN}Provide the below information for client you want to search{Fore.RESET}:\n")
+    fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
+    lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
+    dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+    list = worksheet.get_all_values()
 
+    # Search client, if exist display the information, otherwise print error message
+   
+    # check_results = check_client(worksheet, fname, lname, dob, list)   
+    
+    # if check_results[0] == True:
+    info = []
+    for index in range(len(list)):
+
+        if fname == list[index][0] and lname == list[index][1]:
+            info.append(list[index])                 
+           
+    else:
+        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+    table = tabulate(info, tablefmt="grid")
+    print(f"{Back.RED}{table}") 
+
+access_clients(clients)
