@@ -310,7 +310,7 @@ def search_clients(worksheet):
         print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
     
 def operation (worksheet):
-    """The operation menu"""
+    """link the management functions to the operation menu"""
     while True:
         option = input("Please choose one of the options from the above list by entering the corresponding number next to it:")
         # Check if user entered the correct value as required
@@ -329,6 +329,25 @@ def operation (worksheet):
                 search_clients(worksheet)
             elif option == "6":
                 # Exit the operation system
-                print("Thank you for using the client management system")
+                print("Thank you for using the clients management system")
                 break
             
+def main ():
+    """Display the menu of the system and run programm according to users choice"""
+    clients = SHEET.worksheet('clients')
+    system_menu = '''
+    ======Clients Management System======
+    1. Add new client to the system
+    2. Delete client from the system
+    3. Edit the client's information 
+    4. Display all the clients on the system (Option to select client Type)
+    5. Search clients by name and display their information
+    6. Exit the system
+    ======================================
+    '''
+    print(system_menu)
+    operation(clients)
+
+if __name__ == "__main__":
+    main()
+
