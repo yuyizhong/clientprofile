@@ -287,22 +287,21 @@ def main(worksheet):
 
 
 def search_clients(worksheet):
-    """Search client and display all the information"""
+    """5. Search clients and display all the information"""
     # Get user to input client's name
     print(f"{Fore.CYAN}Provide the below information for client you want to search{Fore.RESET}:\n")
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()    
     list = worksheet.get_all_values()
 
-    # Search client, if exist display the information, otherwise print error message   
-    
+    # Search client, if exist display the information, otherwise print error message 
     client_exist = False    
-    info = []    
+    client_info = []    
     for index in range(len(list)):            
         if fname == list[index][0] and lname == list[index][1]:
             print("-------------------")
-            info.append(list[index])                 
-            table = tabulate(info, tablefmt="grid")
+            client_info.append(list[index])                 
+            table = tabulate(client_info, tablefmt="grid")
             
             print(f"{Back.RED}{table}")
             print("-------------------") 
@@ -310,4 +309,26 @@ def search_clients(worksheet):
     if not client_exist:
         print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
     
-
+def operation (worksheet):
+    """The operation menu"""
+    while True:
+        option = input("Please choose one of the options from the above list by entering the corresponding number next to it:")
+        # Check if user entered the correct value as required
+        if option not in ["1","2","3","4","5","6"]:
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+        else:
+            if option == "1":
+                add_client(worksheet)
+            elif option == "2":
+                delete_client(worksheet)
+            elif option == "3":
+                update_client(worksheet)
+            elif option == "4":
+                get_all_clients(worksheet)
+            elif option == "5":
+                search_clients(worksheet)
+            elif option == "6":
+                # Exit the operation system
+                print("Thank you for using the client management system")
+                break
+            
