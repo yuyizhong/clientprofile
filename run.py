@@ -251,42 +251,28 @@ def get_all_clients(worksheet):
     # Option to list All clients
     status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
     print(status)
-    list = worksheet.get_all_values() 
-       
-    data = []
-    if (status == "Regular" or "Vip"):
+    list = worksheet.get_all_values()        
+    
+    if status == "Regular" or status == "Vip":
+        data = []
         for index in range(len(list)):        
            
             if list[index][6] == status:                      
                 row=list[index]            
-                data.append(row)
-        return data
+                data.append(row)                
+        table = tabulate(data, tablefmt="grid")
+        print(f"{Back.RED}{table}")        
+    
     elif status == "All":
-        table = tabulate(worksheet.get_all_values(), tablefmt="grid")
-        print(f"{Back.RED}{table}")
+        all_table = tabulate(list, tablefmt="grid")
+        print(f"{Back.RED}{all_table}")
     else:
         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
-        status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
-
-
-def clients_list(worksheet):
-
-        client_list=get_all_clients(worksheet)
-        table = tabulate(client_list, tablefmt="grid")
-        print(f"{Back.RED}{table}") 
-
-    # else:
-    #         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
-    #         status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
-    #     # get_all_clients(worksheet)
-    
-    # table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
-    # print(f"{Back.RED}{table}")
-clients_list(clients)
+        get_all_clients(worksheet)
 
 
 
-    
+get_all_clients(clients)
     
 
 
