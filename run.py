@@ -272,7 +272,7 @@ def get_all_clients(worksheet):
 
 
 
-get_all_clients(clients)
+# get_all_clients(clients)
     
 
 
@@ -290,6 +290,9 @@ get_all_clients(clients)
 #         delete_client(worksheet)
 
 # get_all_clients(clients)
+
+def access_client(worksheet):
+    
 
 
 def main (worksheet):
