@@ -254,18 +254,25 @@ def get_all_clients(worksheet):
     list = worksheet.get_all_values() 
        
     data = []
-    
-    for index in range(len(list)):        
+    if (status == "Regular" or "Vip"):
+        for index in range(len(list)):        
            
-        if list[index][6] == status:                      
-            row=list[index]            
-            data.append(row)
-    return data
+            if list[index][6] == status:                      
+                row=list[index]            
+                data.append(row)
+        return data
+    elif status == "All":
+        table = tabulate(worksheet.get_all_values(), tablefmt="grid")
+        print(f"{Back.RED}{table}")
+    else:
+        print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+        status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
+
 
 def clients_list(worksheet):
 
         client_list=get_all_clients(worksheet)
-        table = tabulate(client_list, headers="firstrow", tablefmt="grid", colalign="left")
+        table = tabulate(client_list, tablefmt="grid")
         print(f"{Back.RED}{table}") 
 
     # else:
