@@ -141,14 +141,13 @@ def delete_client(worksheet):
     list = worksheet.get_all_values()
 
     # Search client, confirm delete decision and delete client, otherwise print error message
-    check_results = check_client(worksheet, fname, lname, dob, list)
-    
-    if check_results[0] == True:          
+    exist = check_client(worksheet, fname, lname, dob, list)    
+    if exist[0] == True:          
     
         delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
         
         if delete_choice == "y":
-            index = check_results[1]
+            index = exist[1]
             num=index+1
             worksheet.delete_rows(num)
                 
@@ -161,8 +160,8 @@ def delete_client(worksheet):
             print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
             delete_client(worksheet)
 
-    if not check_results[0]:
-        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+    # if not exist[0]:
+    #     print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
 
 def update_options(worksheet, fname, lname, index, num):
 
