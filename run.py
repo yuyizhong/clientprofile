@@ -34,15 +34,6 @@ SHEET = GSPREAD_CLIENT.open('Client-Book')
 
 clients = SHEET.worksheet('clients')
 
-
-
-
-# table = tabulate(data, headers="firstrow", tablefmt="grid", colalign="left")
-
-# # print(f"{Back.RED}{table}")
-# dob= data[1][2]
-# print(status(dob))
-
 def get_initial_data():
     # Get Client's name and D.o.B
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
@@ -271,10 +262,7 @@ def get_all_clients(worksheet):
     else:
         print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
         get_all_clients(worksheet)
-
-get_all_clients(clients)
-    
-
+  
 
 def main(worksheet):
     """Run all the management functions"""
@@ -335,17 +323,19 @@ def operation (worksheet):
 def main ():
     """Display the menu of the system and run programm according to users choice"""
     clients = SHEET.worksheet('clients')
+    title = pyfiglet.figlet_format("Clients Management System", font="doom", justify="center")
+    print(title)     
+    print("=======================================================================")
     system_menu = '''
-    ======Clients Management System======
     1. Add new client to the system
     2. Delete client from the system
     3. Edit the client's information 
     4. Display all the clients on the system (Option to select client Type)
     5. Search clients by name and display their information
     6. Exit the system
-    ======================================
-    '''
-    print(system_menu)
+    '''     
+    print(system_menu.center(100))
+    print("========================================================================")
     operation(clients)
 
 if __name__ == "__main__":
