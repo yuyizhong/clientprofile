@@ -64,13 +64,29 @@ def check_client(worksheet, fname, lname, dob, list):
     for index in range(len(list)):
         if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
             print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is in the system{Style.RESET_ALL}\n")
-            
-            return True, index
+            return True
             break
     
     if not exist:
         print (f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is not in the system{Style.RESET_ALL}\n")
         return False
+
+def check_client1(worksheet, fname, lname, dob, list):
+
+    """Get user input to check if client is exist"""
+   
+    exist = False  
+    for index in range(len(list)):
+        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+            print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is in the system{Style.RESET_ALL}\n")
+            
+            return "True", index
+            break
+    
+    if not exist:
+        print (f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is not in the system{Style.RESET_ALL}\n")
+        return "False"
+
 
 def add_client(worksheet):
 
@@ -141,13 +157,13 @@ def delete_client(worksheet):
     list = worksheet.get_all_values()
 
     # Search client, confirm delete decision and delete client, otherwise print error message
-    exist = check_client(worksheet, fname, lname, dob, list)    
-    if exist[0] == True:          
+    check_results = check_client1(worksheet, fname, lname, dob, list)    
+    if check_results[0] == "True":          
     
         delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
         
         if delete_choice == "y":
-            index = exist[1]
+            index = check_results[1]
             num=index+1
             worksheet.delete_rows(num)
                 
@@ -203,9 +219,9 @@ def update_client(worksheet):
 
     # Search client, if exist, confirm edit options and update client information accordingly, otherwise print error message
    
-    check_results = check_client(worksheet, fname, lname, dob, list)   
+    check_results = check_client1(worksheet, fname, lname, dob, list)   
     
-    if check_results[0] == True:
+    if check_results[0] == "True":
         index = check_results[1]
         # Option to edit client's name
         update_options(worksheet, fname, lname, index, 1)
@@ -245,8 +261,7 @@ def update_client(worksheet):
             print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
             update_client(worksheet)            
    
-    if not check_results[0]:
-        print (f"{Back.RED}{Fore.WHITE}Client is not exist!{Style.RESET_ALL}\n")
+   
 
 
 def get_all_clients(worksheet):
