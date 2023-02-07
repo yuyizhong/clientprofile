@@ -297,7 +297,7 @@ def get_all_clients(worksheet):
 def operation (worksheet):
     """link the management functions to the operation menu"""
     while True:        
-        title = pyfiglet.figlet_format("Clients Management System", font="doom", justify="center")
+        title = pyfiglet.figlet_format("Clients Profile System", font="doom", justify="center")
         print(title)     
         print("=======================================================================")
         system_menu = '''
@@ -305,7 +305,7 @@ def operation (worksheet):
         2. Search clients by name and display their information
         3. Delete client from the system
         4. Edit the client's information 
-        5. Display all the clients on the system (Option to select client Type)    
+        5. Display all the clients on the system (Option to select client Type)
         6. Exit the system
         '''     
         print(f"{Fore.GREEN}{system_menu}")
