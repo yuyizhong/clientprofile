@@ -297,7 +297,7 @@ def get_all_clients(worksheet):
 def operation (worksheet):
     """link the management functions to the operation menu"""
     while True:        
-        title = pyfiglet.figlet_format("Clients Profile System", font="doom", justify="center")
+        title = pyfiglet.figlet_format("Clients Profile", font="doom", justify="center")
         print(title)     
         print("=======================================================================")
         system_menu = '''
