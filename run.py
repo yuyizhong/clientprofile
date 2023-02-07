@@ -56,29 +56,29 @@ def validate_spend(value):
     return True
 
 
-def check_client(worksheet, fname, lname, dob, list):
+def check_client(fname, lname, dob, data):
 
     """Get user input to check if client is exist"""
 
-    exist = False
-    for index in range(len(list)):
-        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
-            print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is in the system{Style.RESET_ALL}\n")
+   exist = False
+    for i in enumerate(data)):
+        if data[i][0] == fname and data[i][1] == lname and data[i][2] == dob:
+            print(f"{Back.RED}{Fore.WHITE}Client {fname} "
+                  f"{lname} is in the system {Style.RESET_ALL}\n")
             return True
-            break
 
     if not exist:
-        print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is not in the system{Style.RESET_ALL}\n")
-        return False
+        print(f"""{Back.RED}{Fore.WHITE}Client {fname}
+                  {lname} is in the system {Style.RESET_ALL}\n""")
 
 
-def check_client1(worksheet, fname, lname, dob, list):
+def check_client1(worksheet, fname, lname, dob, data):
 
     """Get user input to check if client is exist"""
 
     exist = False
-    for index in range(len(list)):
-        if (list[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
+    for index in range(len(data)):
+        if (data[index][0] == fname and list[index][1] == lname and list[index][2] == dob):
             print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} is in the system{Style.RESET_ALL}\n")
 
             return "True", index
@@ -97,13 +97,13 @@ def add_client(worksheet):
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
-    list = worksheet.get_all_values()
+    data = worksheet.get_all_values()
 
     # Check if Client is already in the list.
     # if not exist: get personal information and add to the list
     # Auto set the client status according to the spend amount
 
-    exist = check_client(worksheet, fname, lname, dob, list)
+    exist = check_client(fname, lname, dob, data)
     if exist is False:
         tel = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Contact Number{Style.RESET_ALL}:\n")
         email = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Email{Style.RESET_ALL}:\n").lower()
@@ -130,14 +130,14 @@ def search_clients(worksheet):
     print(f"{Fore.CYAN}Provide the below information for the client which you want to search{Fore.RESET}:\n")
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
-    list = worksheet.get_all_values()
+    data = worksheet.get_all_values()
 
     # Search client, if exist display the information, otherwise print error message
     client_exist = False
     client_info = []
-    for index in range(len(list)):
-        if fname == list[index][0] and lname == list[index][1]:
-            client_info.append(list[index])
+    for index in range(len(data))):
+        if fname == data[index][0] and lname == data[index][1]:
+            client_info.append(data[index])
             client_exist = True
 
     if not client_exist:
@@ -156,10 +156,10 @@ def delete_client(worksheet):
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
-    list = worksheet.get_all_values()
+    data = worksheet.get_all_values()
 
     # Search client, confirm delete decision and delete client, otherwise print error message
-    check_results = check_client1(worksheet, fname, lname, dob, list)
+    check_results = check_client1(worksheet, fname, lname, dob, data)
     if check_results[0] == "True":
 
         delete_choice = input(f"{Fore.YELLOW}Do you want to delete client {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
@@ -179,11 +179,11 @@ def delete_client(worksheet):
             delete_client(worksheet)
 
 
-def update_options(worksheet, fname, lname, index, num):
+def update_options(worksheet, fname, lname, index, num)
 
     """ options for user to choose when updating client's basic information"""
-    list = worksheet.get_all_values()
-    option = list[0][num-1]
+    data = worksheet.get_all_values()
+    option = data[0][num-1]
 
     edit_choice = input(f"{Fore.YELLOW}Do you want to edit client {fname} {lname}'s {option}? Y or N{Fore.RESET}:\n").lower()
 
@@ -214,11 +214,11 @@ def update_client(worksheet):
     fname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}First Name{Style.RESET_ALL}:\n").capitalize()
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
-    list = worksheet.get_all_values()
+    data = worksheet.get_all_values()
 
     # Search client, if exist, confirm edit options and update client information accordingly, otherwise print error message
 
-    check_results = check_client1(worksheet, fname, lname, dob, list)
+    check_results = check_client1(worksheet, fname, lname, dob, data)
 
     if check_results[0] == "True":
         index = check_results[1]
@@ -240,7 +240,7 @@ def update_client(worksheet):
                 new_spend = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}the new Spend amount{Style.RESET_ALL}:\n")
                 if validate_spend(new_spend):
                     break
-            old_total_spend = list[index][5]
+            old_total_spend = data[index][5]
             total_spend = float(old_total_spend) + float(new_spend)
             row = index + 1
             worksheet.update_cell(row, 6, total_spend)
@@ -269,22 +269,22 @@ def get_all_clients(worksheet):
     # Option to list All clients
 
     status = input(f"{Fore.YELLOW}Please choose the status of the clients you like to view? Enter Regular, Vip or All{Fore.RESET}:\n").capitalize()
-    list = worksheet.get_all_values()
+    data = worksheet.get_all_values()
 
     if status == "Regular" or status == "Vip":
         data = []
         print("-------------------")
-        for index in range(len(list)):
+        for index in range(len(data)):
 
-            if list[index][6] == status:
-                row = list[index]
+            if data[index][6] == status:
+                row = data[index]
                 data.append(row)
         table = tabulate(data, tablefmt="grid")
         print(f"{Back.RED}{table}")
         print("-------------------")
     elif status == "All":
         print("-------------------")
-        all_table = tabulate(list, tablefmt="grid")
+        all_table = tabulate(data, tablefmt="grid")
         print(f"{Back.RED}{all_table}")
         print("-------------------")
     else:
