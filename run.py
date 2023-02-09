@@ -335,18 +335,18 @@ def operation(worksheet):
               "===================================="
               "==========")
         system_menu = '''
-        1. Add new client to the system
+        1. Add new clients to the system
         2. Search clients by name and display their information
-        3. Delete client from the system
-        4. Edit the client's information
-        5. Display all the clients on the system (Option to select client Type)
+        3. Delete clients from the system
+        4. Edit clients' information
+        5. Display all the clients on the system (Option to select clients' status)
         6. Exit the system
         '''
         print(f"{Fore.GREEN}{system_menu}")
         print("====================================="
               "==================================="
               "==========")
-        option = input(f"{Fore.MAGENTA}Please enter the number"
+        option = input(f"{Fore.GREEN}Please enter the number"
                        f" between 1 - 6 to run your choice:{Style.RESET_ALL}")
         # Check if user entered the correct value as required
         if option not in ["1", "2", "3", "4", "5", "6"]:
@@ -365,7 +365,7 @@ def operation(worksheet):
                 get_all_clients(worksheet)
             elif option == "6":
                 # Exit the operation system
-                print(f"{Fore.MAGENTA}Thank you for using the clients profile"
+                print(f"{Fore.GREEN}Thank you for using the clients profile"
                       f" system! Hope to See you soon!{Style.RESET_ALL}")
                 break
 
