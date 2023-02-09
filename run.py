@@ -28,7 +28,7 @@ SCOPE = [
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('Client-Book')
+SHEET = GSPREAD_CLIENT.open('Clients-Profile')
 
 
 def validate_spend(value):
@@ -38,9 +38,11 @@ def validate_spend(value):
     """
     try:
         spend_num = float(value)
-        print(f"{Back.GREEN}{Fore.BLACK}Number entered is valid.")
-    except ValueError as e:
-        print(f"{Back.RED}{Fore.WHITE}Not a number: {e}, please try again\n")
+        print(f"{Back.GREEN}{Fore.BLACK}Number {spend_num}"
+              f" is valid.{Style.RESET_ALL}\n")
+    except ValueError:
+        print(f"{Back.RED}{Fore.WHITE}Not a number,"
+              f" please try again!{Style.RESET_ALL}\n")
         return False
 
     return True
@@ -131,7 +133,14 @@ def search_clients(worksheet):
         print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} "
               f"you searched is not fund in the system!{Style.RESET_ALL}\n")
     co_header = [
-            "F.Name", "L.Name", "DoB", "Tel", "Email", "Sum(Spend)", "Status"]
+            "First Name",
+            "Last Name",
+            "Date of Birth",
+            "Contact Number",
+            "Email",
+            "Total Spend",
+            "Status"
+    ]
     table = tabulate(client_info, headers=co_header, tablefmt="grid")
     print(f"{Back.RED}{table}")
 
@@ -297,7 +306,14 @@ def get_all_clients(worksheet):
             if row[6] == status:
                 new_data.append(row)
         co_header = [
-            "F.Name", "L.Name", "DoB", "Tel", "Email", "T.Spend", "Status"]
+            "First Name",
+            "Last Name",
+            "Date of Birth",
+            "Contact Number",
+            "Email",
+            "Total Spend",
+            "Status"
+        ]
         table = tabulate(new_data, headers=co_header, tablefmt="grid")
         print(f"{Back.RED}{table}{Style.RESET_ALL}")
     elif status == "All":
