@@ -51,9 +51,9 @@ def check_client(fname, lname, dob, data):
     """Get user input to check if client is exist"""
 
     exist = False    
-    for i, row in enumerate(data):            
+    for i, row in enumerate(data):          
         if row[0] == fname and row[1] == lname and row[2] == dob:
-            print(f"{Back.RED}{Fore.WHITE}Client {fname} "+
+            print(f"{Back.RED}{Fore.WHITE}Client {fname} "
                   f"{lname} is in the system {Style.RESET_ALL}\n")
             return {"exists": True, "index": i}
 
@@ -73,7 +73,8 @@ def add_client(worksheet):
     lname = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Last"
                   f" Name{Style.RESET_ALL}:\n").capitalize()
     dob = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}Date of"
-                f" Birth formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
+                f" Birth formatted as"
+                f" {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
     data = worksheet.get_all_values()
 
     # Check if Client is already in the list.
@@ -88,7 +89,8 @@ def add_client(worksheet):
                       f"Email{Style.RESET_ALL}:\n").lower()
         while True:
             spend = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}client's"
-                          f" spend amount in Sterling Pounds{Style.RESET_ALL}:\n")
+                          f" spend amount in Sterling Pounds"
+                          f"{Style.RESET_ALL}:\n")
             if validate_spend(spend):
                 break
         fspend = float(spend)
@@ -100,7 +102,7 @@ def add_client(worksheet):
         # Add the list of new client's information to the clients sheet
         worksheet.append_row(new_client)
         print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname}"
-              f" is now added to the Client Book.\n")
+              f" is now added to the Clients Profils.{Style.RESET_ALL}\n")
 
 
 def search_clients(worksheet):
@@ -116,7 +118,8 @@ def search_clients(worksheet):
                   f" Name{Style.RESET_ALL}:\n").capitalize()
     data = worksheet.get_all_values()
 
-    # Search client, if exist display the information, otherwise print error message
+    # Search client, if exist display the information
+    # otherwise print error message
     client_exist = False
     client_info = []
     for i, row in enumerate(data):        
@@ -126,9 +129,10 @@ def search_clients(worksheet):
 
     if not client_exist:
         print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} "
-        f"you searched is not fund in the system!{Style.RESET_ALL}\n")
-
-    table = tabulate(client_info, tablefmt="grid")
+              f"you searched is not fund in the system!{Style.RESET_ALL}\n")
+    co_header = [
+            "F.Name", "L.Name", "DoB", "Tel", "Email", "Sum(Spend)", "Status"]
+    table = tabulate(client_info, headers=co_header, tablefmt="grid")
     print(f"{Back.RED}{table}")
 
 
@@ -147,26 +151,30 @@ def delete_client(worksheet):
                 f" formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
     data = worksheet.get_all_values()
 
-    # Search client, confirm delete decision and delete client, otherwise print error message
+    # Search client, confirm delete decision and delete client
+    # Otherwise print error message
     check_results = check_client(fname, lname, dob, data)
-    if check_results[exists] is True:
+    if check_results["exists"] is True:
 
         delete_choice = input(f"{Fore.YELLOW}Do you want to delete client"
-                              f" {fname} {lname}? Y or N{Fore.RESET}:\n").lower()
+                              f" {fname} {lname}?"
+                              f" Y or N{Fore.RESET}:\n").lower()
 
         if delete_choice == "y":
-            index = check_results[1]
+            index = check_results["index"]
             num = index+1
             worksheet.delete_rows(num)
 
             print(f"{Back.YELLOW}{Fore.BLACK}client {fname} {lname} is"
-                  f" now deleted from Client Book.\n")
+                  f" now deleted from Clients Profile.{Style.RESET_ALL}\n")
 
         elif delete_choice == "n":
-            print(f"{Back.GREEN}{Fore.BLACK}No delete, exit to main menue")
+            print(f"{Back.GREEN}{Fore.BLACK}No delete,"
+                  f" exit to main menu{Style.RESET_ALL}")
 
         else:
-            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
+                  f" please try again!{Style.RESET_ALL}\n")
             delete_client(worksheet)
 
 
@@ -177,7 +185,8 @@ def update_options(worksheet, fname, lname, index, num):
     option = data[0][num-1]
 
     edit_choice = input(f"{Fore.YELLOW}Do you want to edit client"
-                        f" {fname} {lname}'s {option}? Y or N{Fore.RESET}:\n").lower()
+                        f" {fname} {lname}'s {option}?"
+                        f" Y or N{Fore.RESET}:\n").lower()
 
     if edit_choice == "y":
         new_data = input(f"{Fore.CYAN}Please enter {Style.BRIGHT}updated"
@@ -190,13 +199,15 @@ def update_options(worksheet, fname, lname, index, num):
             worksheet.update_cell(row, num, new_data)
 
         print(f"{Back.YELLOW}{Fore.BLACK}client's {option} is now updated"
-              f" as {new_data} at Client Book.\n")
+              f" as {new_data} at Clients Profile{Style.RESET_ALL}.\n")
 
     elif edit_choice == "n":
-        print(f"{Back.GREEN}{Fore.BLACK}You select N, move to next option")
+        print(f"{Back.GREEN}{Fore.BLACK}You select N,"
+              f" move to next option{Style.RESET_ALL}")
 
     else:
-        print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+        print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
+              f" please try again!{Style.RESET_ALL}\n")
         update_client(worksheet)
 
 
@@ -218,10 +229,10 @@ def update_client(worksheet):
     # Search client, if exist, confirm edit options 
     # Update client details accordingly, otherwise print error message
 
-    check_results = check_client(worksheet, fname, lname, dob, data)
+    check_results = check_client(fname, lname, dob, data)
 
-    if check_results[exists] is True:
-        index = check_results[1]
+    if check_results["exists"] is True:
+        index = check_results["index"]
         # Option to edit client's name
         update_options(worksheet, fname, lname, index, 1)
         update_options(worksheet, fname, lname, index, 2)
@@ -232,9 +243,11 @@ def update_client(worksheet):
         # Option to edit client's Email
         update_options(worksheet, fname, lname, index, 5)
 
-        # Option to update client's spend by adding the new spend to the total spend
+        # Option to update client's spend 
+        # by adding the new spend to the total spend
         edit_spend = input(f"{Fore.YELLOW}Do you want to add client"
-                           f" {fname} {lname}'s New Spend? Y or N{Fore.RESET}:\n").lower()
+                           f" {fname} {lname}'s New Spend?"
+                           f" Y or N{Fore.RESET}:\n").lower()
 
         if edit_spend == "y":
             while True:
@@ -254,13 +267,15 @@ def update_client(worksheet):
                 status = "Regular"
             worksheet.update_cell(row, 7, status)
             print(f"{Back.YELLOW}{Fore.BLACK}{status} client's Total Spend"
-                  f" is {total_spend} at Client Book.\n")
+                  f" is {total_spend} at Clients Profile.{Style.RESET_ALL}\n")
 
         elif edit_spend == "n":
-            print(f"{Back.GREEN}{Fore.BLACK}You select N, no other option to update!")
+            print(f"{Back.GREEN}{Fore.BLACK}You select N,"
+                  f" no other option to update!{Style.RESET_ALL}\n")
 
         else:
-            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
+                  f" please try again!{Style.RESET_ALL}\n")
             update_client(worksheet)
 
 
@@ -277,30 +292,31 @@ def get_all_clients(worksheet):
     data = worksheet.get_all_values()
 
     if status == "Regular" or status == "Vip":
-        data = []
-        print("-------------------")
+        new_data = []        
         for i, row in enumerate(data):
             if row[6] == status:
-                data.append(row)
-        table = tabulate(data, tablefmt="grid")
-        print(f"{Back.RED}{table}")
-        print("-------------------")
-    elif status == "All":
-        print("-------------------")
+                new_data.append(row)
+        co_header = [
+            "F.Name", "L.Name", "DoB", "Tel", "Email", "T.Spend", "Status"]
+        table = tabulate(new_data, headers=co_header, tablefmt="grid")
+        print(f"{Back.RED}{table}{Style.RESET_ALL}")        
+    elif status == "All":        
         all_table = tabulate(data, tablefmt="grid")
-        print(f"{Back.RED}{all_table}")
-        print("-------------------")
+        print(f"{Back.RED}{all_table}{Style.RESET_ALL}")        
     else:
-        print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+        print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
+              f" please try again!{Style.RESET_ALL}\n")
         get_all_clients(worksheet)
 
 
 def operation(worksheet):
     """link the management functions to the operation menu"""
     while True:
-        title = pyfiglet.figlet_format("Clients Profile", font="doom", justify="center")
+        title = pyfiglet.figlet_format(
+            "Clients Profile", font="doom", justify="center")
         print(title)
-        print("=======================================================================")
+        print("==================================="
+              "====================================")
         system_menu = '''
         1. Add new client to the system
         2. Search clients by name and display their information
@@ -310,11 +326,14 @@ def operation(worksheet):
         6. Exit the system
         '''
         print(f"{Fore.GREEN}{system_menu}")
-        print("========================================================================")
-        option = input(f"{Fore.MAGENTA}Please enter the number between 1 - 6 to run your choice:")
+        print("====================================="
+              "===================================")
+        option = input(f"{Fore.MAGENTA}Please enter the number"
+                       f" between 1 - 6 to run your choice:{Style.RESET_ALL}")
         # Check if user entered the correct value as required
         if option not in ["1", "2", "3", "4", "5", "6"]:
-            print(f"{Back.RED}{Fore.WHITE}Not a valid input, please try again!\n")
+            print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
+                  f" please try again!{Style.RESET_ALL}\n")
         else:
             if option == "1":
                 add_client(worksheet)
@@ -329,7 +348,7 @@ def operation(worksheet):
             elif option == "6":
                 # Exit the operation system
                 print(f"{Fore.MAGENTA}Thank you for using the clients profile"
-                      f" system! Hope to See you soon!")
+                      f" system! Hope to See you soon!{Style.RESET_ALL}")
                 break
 
 
