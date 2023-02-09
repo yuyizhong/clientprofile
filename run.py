@@ -333,7 +333,7 @@ def operation(worksheet):
         print(title)
         print("==================================="
               "===================================="
-              "=================")
+              "==========")
         system_menu = '''
         1. Add new client to the system
         2. Search clients by name and display their information
@@ -345,7 +345,7 @@ def operation(worksheet):
         print(f"{Fore.GREEN}{system_menu}")
         print("====================================="
               "==================================="
-              "=================")
+              "==========")
         option = input(f"{Fore.MAGENTA}Please enter the number"
                        f" between 1 - 6 to run your choice:{Style.RESET_ALL}")
         # Check if user entered the correct value as required
