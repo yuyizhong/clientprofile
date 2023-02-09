@@ -142,7 +142,7 @@ def search_clients(worksheet):
             "Status"
     ]
     table = tabulate(client_info, headers=co_header, tablefmt="grid")
-    print(f"{Back.RED}{table}")
+    print(f"{Back.WHITE}{Fore.BLUE}{table}{Style.RESET_ALL}")
 
 
 def delete_client(worksheet):
@@ -315,10 +315,10 @@ def get_all_clients(worksheet):
             "Status"
         ]
         table = tabulate(new_data, headers=co_header, tablefmt="grid")
-        print(f"{Back.RED}{table}{Style.RESET_ALL}")
+        print(f"{Back.WHITE}{Fore.BLUE}{table}{Style.RESET_ALL}")
     elif status == "All":
         all_table = tabulate(data, tablefmt="grid")
-        print(f"{Back.RED}{all_table}{Style.RESET_ALL}")
+        print(f"{Back.WHITE}{Fore.BLUE}{all_table}{Style.RESET_ALL}")
     else:
         print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
               f" please try again!{Style.RESET_ALL}\n")
@@ -333,7 +333,7 @@ def operation(worksheet):
         print(title)
         print("==================================="
               "===================================="
-              "==============")
+              "========")
         system_menu = '''
         1. Add new clients to the system
         2. Search clients by name and display their information
@@ -345,7 +345,7 @@ def operation(worksheet):
         print(f"{Fore.GREEN}{system_menu}")
         print("====================================="
               "==================================="
-              "==============")
+              "========")
         option = input(f"{Fore.GREEN}Please enter the number"
                        f" between 1 - 6 to run your choice:{Style.RESET_ALL}")
         # Check if user entered the correct value as required
