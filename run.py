@@ -50,8 +50,8 @@ def check_client(fname, lname, dob, data):
 
     """Get user input to check if client is exist"""
 
-    exist = False    
-    for i, row in enumerate(data):          
+    exist = False
+    for i, row in enumerate(data):
         if row[0] == fname and row[1] == lname and row[2] == dob:
             print(f"{Back.RED}{Fore.WHITE}Client {fname} "
                   f"{lname} is in the system {Style.RESET_ALL}\n")
@@ -122,7 +122,7 @@ def search_clients(worksheet):
     # otherwise print error message
     client_exist = False
     client_info = []
-    for i, row in enumerate(data):        
+    for i, row in enumerate(data):
         if fname == row[0] and lname == row[1]:
             client_info.append(row)
             client_exist = True
@@ -226,7 +226,7 @@ def update_client(worksheet):
                 f" formatted as {Fore.YELLOW}dd/mm/yyyy{Style.RESET_ALL}:\n")
     data = worksheet.get_all_values()
 
-    # Search client, if exist, confirm edit options 
+    # Search client, if exist, confirm edit options
     # Update client details accordingly, otherwise print error message
 
     check_results = check_client(fname, lname, dob, data)
@@ -243,7 +243,7 @@ def update_client(worksheet):
         # Option to edit client's Email
         update_options(worksheet, fname, lname, index, 5)
 
-        # Option to update client's spend 
+        # Option to update client's spend
         # by adding the new spend to the total spend
         edit_spend = input(f"{Fore.YELLOW}Do you want to add client"
                            f" {fname} {lname}'s New Spend?"
@@ -292,17 +292,17 @@ def get_all_clients(worksheet):
     data = worksheet.get_all_values()
 
     if status == "Regular" or status == "Vip":
-        new_data = []        
+        new_data = []
         for i, row in enumerate(data):
             if row[6] == status:
                 new_data.append(row)
         co_header = [
             "F.Name", "L.Name", "DoB", "Tel", "Email", "T.Spend", "Status"]
         table = tabulate(new_data, headers=co_header, tablefmt="grid")
-        print(f"{Back.RED}{table}{Style.RESET_ALL}")        
-    elif status == "All":        
+        print(f"{Back.RED}{table}{Style.RESET_ALL}")
+    elif status == "All":
         all_table = tabulate(data, tablefmt="grid")
-        print(f"{Back.RED}{all_table}{Style.RESET_ALL}")        
+        print(f"{Back.RED}{all_table}{Style.RESET_ALL}")
     else:
         print(f"{Back.RED}{Fore.WHITE}Not a valid input,"
               f" please try again!{Style.RESET_ALL}\n")
