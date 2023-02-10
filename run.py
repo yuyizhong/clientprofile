@@ -131,7 +131,7 @@ def search_clients(worksheet):
 
     if not client_exist:
         print(f"{Back.RED}{Fore.WHITE}Client {fname} {lname} "
-              f"you searched is not fund in the system!{Style.RESET_ALL}\n")
+              f"you searched is not found in the system!{Style.RESET_ALL}\n")
     co_header = [
             "First Name",
             "Last Name",

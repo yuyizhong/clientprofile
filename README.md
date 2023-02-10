@@ -35,7 +35,8 @@ As a sales person or account manager, users would like to have an easy access to
 ## Features
 
 **App Title and Main Menu:**
-* [Pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/#:~:text=pyfiglet%20takes%20ASCII%20text%20and,pyfiglet%20module%20%3A%20pip%20install%20pyfiglet) was installed and imported to generate ASCII art for App Title.
+* [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) was installed and imported to generate ASCII art for App Title.
+
 
 * For the sake of it's large font size and simple style, Doom Font was used to the title. It was centred to prominent it's professionalism and clean layout.
 
@@ -52,18 +53,38 @@ As a sales person or account manager, users would like to have an easy access to
 
 ![App Title](assets/images/menu1.png)
 
+
 **Operation option 1 - Add New Client:**
 * If users enter '1' to add a new client, App will ask users to provide information of client's first name, last name and date of birth. 
 * Those unique information are used to identify if the person entered is already a client. 
-* If Not in the system, then further personal information are asked to build the client profile. (eg: contact number, email and spend)
+* If **Not** in the system, then further personal information are asked to build the client profile. (eg: contact number, email and spend)
 * When enter the spend amount, a number is required, otherwise an error message appears until a number is entered.
 * Then the entered spend is viewed. If it is more than 35k, this new client is classified as VIP, otherwise Regular in status.
-* After confirmation of adding the client to the system, main menu is loaded again ready for next operation.
+* After confirmation of adding the client to the system, main menu is loaded again for next operation.
 
 ![App Title](assets/images/add-client1-1.png)
 ![App Title](assets/images/add-client1-2.png)
 
+* If the person entered is already in the system, an message highlighted in red informs user the result.
+* Main menu is loaded again and ready for next operation.
 
+![App Title](assets/images/add-client2.png)
+
+
+**Operation option 2 - Search Client:**
+* If users enter '2' to search a client to get his/her details, App will ask users to provide information of client's first name and last name.
+* If the name is found, a table containing the client(s)' details is displayed.
+* [Tabulate](https://pypi.org/project/tabulate/) was installed and imported to format python list into nice table. This feature improves users' visual experience.
+* It is very useful when users want to access a client's information for certain purpose. (eg. get the contact details, check total spend or client status)
+* It also can be used to find the date of birth, before users delete client or edit a client's detail. 
+* If there are multiple clients having a same name, all of them will be listed in the table.
+
+![App Title](assets/images/search-client1.png)
+
+* If client not found in the system, a message highlighted in red would inform the result to users.
+* Then an empty table with headers only is displayed.
+
+![App Title](assets/images/search-client2.png)
 
 
 
