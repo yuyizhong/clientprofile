@@ -2,7 +2,7 @@
 
 Clients Profile is a Python terminal App that runs on Heroku. 
 
-![User Interface](assets/images/menu.png)
+![User Platform](assets/images/menu.png)
 
 As a data management system, it is supposed to help user to easily access and manipulate data to provide efficiency to their work. The targeted users are sales person, account managers and whoever managing a large client base. With Clients Profile App, they can now add, delete, search, edit and view clients through the interactive terminal with any device. Furthermore, when each time user updating a new sale, the system will automatically review the client's status and change it accordingly.
 A live project can be viewed [Here](https://client-profile-system.herokuapp.com/).
@@ -34,7 +34,27 @@ As a sales person or account manager, users would like to have an easy access to
 
 ## Features
 
-**Title Section:**
+**App Title and Main Menu:**
+* [Pyfiglet](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/#:~:text=pyfiglet%20takes%20ASCII%20text%20and,pyfiglet%20module%20%3A%20pip%20install%20pyfiglet) was installed and imported to generate ASCII art for App Title.
+
+* For the sake of it's large font size and simple style, Doom Font was used to the title. It was centred to prominent it's professionalism and clean layout.
+
+![App Title](assets/images/title.png)
+
+* Green colored operation menu is right underneath the App title. 
+* Number listed operation options are clearly specified in short words.
+* A friendly message instructs the user to start the program.
+
+![App Title](assets/images/main-menu.png)
+
+* If users didn't enter what required by instruction message (eg: anything rather than number 1 - 6), an error message with read background appears.
+* Users will be asked to enter again until a number representing one of the menu options is entered.
+
+![App Title](assets/images/menu1.png)
+
+
+
+
 
 
 
