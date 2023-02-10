@@ -61,7 +61,7 @@ def check_client(fname, lname, dob, data):
 
     if not exist:
         print(f"{Back.RED}{Fore.WHITE}Client {fname}"
-              f"{lname} is NOT in the system {Style.RESET_ALL}\n")
+              f" {lname} is NOT in the system {Style.RESET_ALL}\n")
         return {"exists": False}
 
 
