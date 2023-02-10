@@ -52,6 +52,18 @@ As a sales person or account manager, users would like to have an easy access to
 
 ![App Title](assets/images/menu1.png)
 
+**Operation option 1 - Add New Client:**
+* If users enter '1' to add a new client, App will ask users to provide information of client's first name, last name and date of birth. 
+* Those unique information are used to identify if the person entered is already a client. 
+* If Not in the system, then further personal information are asked to build the client profile. (eg: contact number, email and spend)
+* When enter the spend amount, a number is required, otherwise an error message appears until a number is entered.
+* Then the entered spend is viewed. If it is more than 35k, this new client is classified as VIP, otherwise Regular in status.
+* After confirmation of adding the client to the system, main menu is loaded again ready for next operation.
+
+![App Title](assets/images/add-client1-1.png)
+![App Title](assets/images/add-client1-2.png)
+
+
 
 
 
