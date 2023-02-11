@@ -29,7 +29,8 @@ As a sales person or account manager, users would like to have an easy access to
 
 ### Site Goal
 * This App was designed based on user stores to provide the best dynamic experience. 
-* Further efforts were made to eliminate certain user input error which may interrupt normal programming.
+* Further efforts were made to eliminate user input 'value error' which may interrupt normal programming.
+* User Inputs are designed **Not** case-sensitive. No matter what case users input, it won't affect the comparison result. 
 * Improved site readability and user friendly interface. 
 
 ## Features
@@ -46,12 +47,12 @@ As a sales person or account manager, users would like to have an easy access to
 * Number listed operation options are clearly specified in short words.
 * A friendly message instructs the user to start the program.
 
-![App Title](assets/images/main-menu.png)
+![Main-Menu](assets/images/main-menu.png)
 
 * If users didn't enter what required by instruction message (eg: anything rather than number 1 - 6), an error message with read background appears.
 * Users will be asked to enter again until a number representing one of the menu options is entered.
 
-![App Title](assets/images/menu1.png)
+![Menu-Error](assets/images/menu1.png)
 
 
 **Operation option 1 - Add New Client:**
@@ -62,13 +63,13 @@ As a sales person or account manager, users would like to have an easy access to
 * Then the entered spend is viewed. If it is more than 35k, this new client is classified as VIP, otherwise Regular in status.
 * After confirmation of adding the client to the system, main menu is loaded again for next operation.
 
-![App Title](assets/images/add-client1-1.png)
-![App Title](assets/images/add-client1-2.png)
+![Add-Client-1](assets/images/add-client1-1.png)
+![Add-Client-2](assets/images/add-client1-2.png)
 
 * If the person entered is already in the system, an message highlighted in red informs user the result.
 * Main menu is loaded again and ready for next operation.
 
-![App Title](assets/images/add-client2.png)
+![Add-Client-Exist](assets/images/add-client2.png)
 
 
 **Operation option 2 - Search Client:**
@@ -79,14 +80,30 @@ As a sales person or account manager, users would like to have an easy access to
 * It also can be used to find the date of birth, before users delete client or edit a client's detail. 
 * If there are multiple clients having a same name, all of them will be listed in the table.
 
-![App Title](assets/images/search-client1.png)
+![Search-Client](assets/images/search-client1.png)
 
 * If client not found in the system, a message highlighted in red would inform the result to users.
-* Then an empty table with headers only is displayed.
+* Then an empty table with headers only is displayed. And main menu is loaded for next operation.
 
-![App Title](assets/images/search-client2.png)
+![Search-Client-NotFound](assets/images/search-client2.png)
 
 
+**Operation option 3 - Delete Client:**
+* If users enter '3' to add a new client, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
+* After finding the client, system will ask user if they want to delete this client (Y or N). 
+* If users enter 'N', App will confirm the decision and exit to main menu.
+
+![Delete-client-N](assets/images/delete-client1.png)
+
+* If users enter 'Y', App will confirm the client is deleted.
+* Main menu is then loaded for next operation.
+
+![Delete-client-Y](assets/images/delete-client2.png)
+
+* If the person entered is not found, then system will inform users the result.
+* Main menu is then loaded for next operation.
+
+![Delete-client-Y](assets/images/delete-client3.png)
 
 
 
