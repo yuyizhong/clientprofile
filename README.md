@@ -153,7 +153,8 @@ client-List-All <img src="assets/images/client-list3.png">
 ## Technologies and Libraries Used
 
 * Python was used as the programming language to create the App.
-* [LucidChart](https://www.lucidchart.com/pages/) was used to create the flow chart for control flow. The flow of the App was laid out and structured to aid in the design of the control flow statements such as if-elif-else statements, while loops and for loops.  where the user input validation checks were visually cleared before the code was written.
+* [LucidChart](https://www.lucidchart.com/pages/) was used to create the flow chart for control flow. The flow of the App was laid out and structured to aid in the design of the control flow statements such as if-elif-else statements, while loops and for loops.  where the user input validation checks were visually cleared before the code was written. 
+The actual flowchart can be viewed [here](https://lucid.app/lucidchart/invitations/accept/inv_784b90d4-5035-47fc-a4f8-026dd960e23b).
 
     ![Flowchart](assets/images/flowchart1.png)
 
@@ -173,7 +174,7 @@ client-List-All <img src="assets/images/client-list3.png">
 
 ### Testing during development
 * Continuous testing was carried out throughout of the development. The whole project was broken into small sections and steps. Each fuinction was checked and amended to the right standard before moving to the next one. 
-* FlowChart was created before coding. It was used to help creating functions and finding errors.
+* [FlowChart](https://lucid.app/lucidchart/invitations/accept/inv_784b90d4-5035-47fc-a4f8-026dd960e23b) was created before coding. It was used to help creating functions and finding errors.
 * `print()`and `type()` were used throughout of the coding process, to identify the errors. 
 *   Any testing user inputs were printed back to the console to check all functions and methods were correctly applied to the input.
 *   Errors and warnings were fixed as they appeared such as indentation errors, lines too long or extra space issues.  This helped keep the code clean and readable so other errors or bugs that arose were identified more easily.
