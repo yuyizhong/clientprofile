@@ -232,7 +232,11 @@ client-List-All <img src="assets/images/client-list3.png">
 
 >        return {"exists": False}
 
-* And I could access through code `if exist["exists"] is False:`
+* And I could now access the particular value through code:
+>    exist = check_client(fname, lname, dob, data):
+
+>        if exist["exists"] is False:
+ 
 
 ### Functional Testing
 
@@ -308,8 +312,21 @@ The below steps were followed to deploy this project to Heroku:
 5. Leave "Settings" and go to "Deploy". Scroll down and set Deployment Method to GitHub. Once GitHub is chosen, find your repository and connect it to Heroku.
 6. Scroll to the bottom of the deploy page and select preferred deployment type:
     * Click **Enable Automatic Deploys** for automatic deployment when you push updates to Github.
-    * Further down to Manual Deploy, make sure the "main" branch is selected and click "Deploy Branch". 
+    * Further down to **Manual Deploy**, make sure the "main" branch is selected and click "Deploy Branch". 
 7. The live link can be found [here](https://client-profile-system.herokuapp.com/).
 
 
 ## Credits
+
+I would like to acknowledge the great support from my mentor Daisy. With my project idea, she introduced me the appropriate technologies and libraries to enhance the App presentation. 
+
+Resources helpful to implement specific features:
+* [Pretty-print tabular data in Python](https://pypi.org/project/tabulate/)
+* [How to use Colorama in Python](https://pypi.org/project/colorama/)
+* [Python | ASCII art using pyfiglet module](https://www.geeksforgeeks.org/python-ascii-art-using-pyfiglet-module/)
+* [Access google sheets in python using Gspread](https://codingpub.dev/access-google-sheets-in-python-using-gspread/)
+
+Resources helped to fix issues/errors in coding:
+* [How can I split up a long f-string in Python?](https://stackoverflow.com/questions/48881196/how-can-i-split-up-a-long-f-string-in-python)
+* [When to use python's enumerate() instead of range() in loops](https://dev.to/wangonya/when-to-use-python-s-enumerate-instead-of-range-in-loops-3e03)
+* [Breaking up long lines of code in Python](https://www.pythonmorsels.com/breaking-long-lines-code-python/)
