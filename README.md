@@ -314,7 +314,18 @@ The below steps were followed to deploy this project to Heroku:
 6. Scroll to the bottom of the deploy page and select preferred deployment type:
     * Click **Enable Automatic Deploys** for automatic deployment when you push updates to Github.
     * Further down to **Manual Deploy**, make sure the "main" branch is selected and click "Deploy Branch". 
-7. The live link can be found [here](https://client-profile-system.herokuapp.com/).
+7. The App live link can be found [here](https://client-profile-system.herokuapp.com/).
+
+### Clone the Repository Code from github desktop ###
+
+Navigate to the GitHub Repository you want to clone to use locally:
+
+- Click on the code drop down button
+- Click on HTTPS
+- Copy the repository link to the clipboard
+- Open your IDE of choice (git must be installed for the next steps)
+- Type git clone copied-git-url into the IDE terminal
+- The project will now been cloned on your local machine for use.
 
 
 ## Credits
