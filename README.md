@@ -148,7 +148,7 @@ client-List-All <img src="assets/images/client-list3.png">
 ### Features Left to Implement
 
 * This App was originally designed to automatically send email to clients at their birthday. Automation email sending is possible. However it requires constantly compare Today to clients' birthday. With the technology we used for this project it is undoable. 
-* I would wish to add this feature to my project at my further learning in Python and extentions.
+* I would wish to add this feature to my project at my further learning in Python and extensions.
 
 ## Technologies and Libraries Used
 
@@ -174,7 +174,7 @@ client-List-All <img src="assets/images/client-list3.png">
 ### Testing during development
 * Continuous testing was carried out throughout of the development. The whole project was broken into small sections and steps. Each fuinction was checked and amended to the right standard before moving to the next one. 
 * FlowChart was created before coding. It was used to help creating functions and finding errors.
-* `print()`and `type()` were used throughout of the coding process, to identy the errors. 
+* `print()`and `type()` were used throughout of the coding process, to identify the errors. 
 *   Any testing user inputs were printed back to the console to check all functions and methods were correctly applied to the input.
 *   Errors and warnings were fixed as they appeared such as indentation errors, lines too long or extra space issues.  This helped keep the code clean and readable so other errors or bugs that arose were identified more easily.
 
@@ -208,7 +208,7 @@ client-List-All <img src="assets/images/client-list3.png">
 >    exist = check_client(fname, lname, dob, data):
 
 >        if exist[0] is False:
-* After research, I reliased this error occurs when data is bool and we are indexing it. After few trial and I fund the best way to fix it is to return a dictionary rather than a list. And I can acess the bool by key.
+* After research, I realised this error occurs when data is bool and we are indexing it. After few trials, I fund the best way to fix it is to return a dictionary rather than a list. And I can access the bool by key.
 * Then the solution is as below:
 >    def check_client(fname, lname, dob, data):
 
@@ -234,31 +234,50 @@ client-List-All <img src="assets/images/client-list3.png">
 
 * And I could access through code `if exist["exists"] is False:`
 
+### Functional Testing
 
+After deployed the app, a dedicated manual testing was carried out as a user at Heroku terminal. Each menu option was tested with all the possible scenarios and particular intention to user input case sensitivity and value validation. The client database spreadsheet was closely monitored to check if any changes made by users through App were registered.
 
-*   The game was deployed early on in development and checked regularly to ensure game flow and any errors were handled early on.
+* `operation()`
 
-*   Testing inputs were used to ensure user inputs would be handled correctly and appropriate feedback to the user was shown on screen.  As mentioned above in the Features Section for how user inputs were handled.
+    * At the terminal, the title, menu list and operation message are displayed in the right format.
+    * Test to entering anything rather than number 1 - 6, operation message should repeatly ask users to enter again until the required input is received.
+    * Check if each number correctly linked to the right function by entering each number from 1 to 6 and follow the instruction.
+    * Details of the function test are listed at below.
+    * After running any option from 1 to 5, it should always return to the main menu and be ready for users to run another option from the menu.
+    * By entering number 6, it should break the while loop therefore exit the main menu.  
+    * Perform as expected.
 
-    *   User Name:
-    As this will accept anything but nothing entered, the enter key was pressed to ensure error was caught and handled appropriately.
+* `add_client()`:
 
-    *   Player Choice:
-    To test capital and small R and P were typed in and also other random inputs such as spaces, other letters, words or numbers to ensure error caught and handled appropriately.
+    * After entering number "1", it should conduct the command to add new client information to the database.
+    * `Check_client()` should work at the early stage to check if the person entered already in the system. 
+    * `validate_spend()` is to validate the 'spend' entered by users to avoid value error which would cause unnecessary interruption. A while loop used here to make sure a valid 'spend' is enter before next step.
+    * The validated spend then used as a reference for client status. Computer will then give the client entered either Vip or Regular as their status accordingly.
+    * * After the adding is confirmed, check client database the online spreadsheet if client information and status are correctly added there.
+    * Perform as expected.
 
-    *   Player Guess:
-    As this will only accept 4 numbers between 1-10 separated by a space, many other combinations of input were tested.  For example, more or fewer numbers were entered, numbers less than 1 or greater than 10 were entered.  Numbers without spaces or extra spaces and also random special characters and no entry at all were all tested to ensure errors were caught and handled appropriately.
+* `search_clients()`:
+    * After entering number '2' and follow the instrucion, it should return the users the client information they searched unless not exist.
+    * tabulate and colorama are used here to present the client data in a nice table format.
+    * Perform as expected.
 
-    *   Code Hint:
-    The secret code was printed to the terminal during development to help with testing the code hint generated matched the player's guesses.  It was checked to ensure numbers in the correct position generated a GREEN hint and numbers in incorrect position generated an ORANGE hint.  If all 4 numbers were not correct the message in red appeared as expected.
+* `delete_client()`:
+    * Entering number'3' should delete the client users entered unless not exist.
+    * After delete confirmed, check client database the online spreadsheet if this is updated there.
+    * Perform as expected.
 
-    *   Attempts Left:
-    Attempts left was checked by playing the game through to see if guesses left decreased by 1 each time and also that guesses left did not change if an input error was entered.
+* `update_client()`:
+    * Entering number'4' will update client information as users instructed unless not exist.
+    * `update_options()` used to check with users for updating options and then update information at the right excel cell.
+    * When users want to update spend, `validate_spend()` used to validate the input for spend and then add it to the current total spend.
+    * Client staus then to be checked based on new total spend, and updated if necessary.
+    * After each confirmation of the updating, check client database the online spreadsheet if client information, total spend and status are corretly updated there.
+    * Perform as expected.
 
-    *   Game Won / Game Lost
-    The game was tested on winning and losing to ensure the correct messages were displayed for both.
+* `get_all_clients()`:
+    * By entering number'5', it should return a table with the group clients information at users' choice.
+    * Testing to enter Vip, Regular and All at each time and see if the right clients list are presented.
+    * tabulate and colorama are used here to present the client data in a nice table format.
+    * Perform as expected.
 
-    * Play Again
-    As mentioned above in the Features section.  To play again the user can type Y or N.  This was tested for lower and uppercase Y and N to check both worked.  Other inputs such as numbers, random words or letters and the enter key pressed were all checked to ensure the errors were handled correctly and appropriate feedback to the user was given.
-
-*   The README.md was proofread, passed through [Grammarly](https://www.grammarly.com/grammar-check) and all links were checked before final submission.
