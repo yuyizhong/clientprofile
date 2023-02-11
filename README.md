@@ -286,3 +286,30 @@ After deployed the app, a dedicated manual testing was carried out as a user at 
 [pep8 online](http://pep8online.com/) was used for validating the python files.  No errors reported.
 
 ![Pep8 Results Screenshot](assets/images/validator.png)
+
+
+## Deployment
+
+### Version Control
+*   Git was used as the version control software. Commands such as git add ., git status, git commit and git push were used to add, save, stage and push the code to the GitHub repository where the source code is stored.
+
+### To deploy to Heroku terminal
+
+The site was deployed via [Heroku]( https://id.heroku.com/login).
+This project was developed utilising the [Code Institute Template]( https://github.com/Code-Institute-Org/python-essentials-template).
+
+`pip3 freeze > requirements.txt` was used to add Gspread, Google.oauth2, tabulate, pyfiglet and Colorama imports to Heroku for deployment.
+
+The below steps were followed to deploy this project to Heroku:
+1. Go to [Heroku](https://dashboard.heroku.com/apps) and click "New" to create a new app.
+2. Enter your App name, set the region, and press "Create App".
+3. Go to "Settings" and navigate to Config Vars. Add first Config Var with a key word of 'CREDS' and a value of credentials file. Add second Config Var with a key word of 'PORT' and a value of '8000'. 
+4. Still in the "Settings", navigate to Buildpacks and add buildpacks for Python and then NodeJS (must in this order).
+5. Leave "Settings" and go to "Deploy". Scroll down and set Deployment Method to GitHub. Once GitHub is chosen, find your repository and connect it to Heroku.
+6. Scroll to the bottom of the deploy page and select preferred deployment type:
+    * Click **Enable Automatic Deploys** for automatic deployment when you push updates to Github.
+    * Further down to Manual Deploy, make sure the "main" branch is selected and click "Deploy Branch". 
+7. The live link can be found [here](https://client-profile-system.herokuapp.com/).
+
+
+## Credits
