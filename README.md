@@ -268,7 +268,7 @@ After deployed the app, a dedicated manual testing was carried out as a user at 
 
 * `delete_client()`:
     * Entering number'3' should delete the client users entered unless not exist.
-    * After delete confirmed, check client database the online spreadsheet if this is updated there.
+    * After delete confirmed, check client database (the online spreadsheet) if this is updated there.
     * Perform as expected.
 
 * `update_client()`:
@@ -276,7 +276,7 @@ After deployed the app, a dedicated manual testing was carried out as a user at 
     * `update_options()` used to check with users for updating options and then update information at the right excel cell.
     * When users want to update spend, `validate_spend()` used to validate the input for spend and then add it to the current total spend.
     * Client staus then to be checked based on new total spend, and updated if necessary.
-    * After each confirmation of the updating, check client database the online spreadsheet if client information, total spend and status are corretly updated there.
+    * After each confirmation of the updating, check client database (the online spreadsheet) if client information, total spend and status are corretly updated there.
     * Perform as expected.
 
 * `get_all_clients()`:
@@ -329,7 +329,7 @@ Navigate to the GitHub Repository you want to clone to use locally:
 
 ## Credits
 
-I would like to acknowledge the great support from my mentor Daisy. With my project idea, she introduced me the appropriate technologies and libraries to enhance the App presentation. 
+I would like to acknowledge the great support from my mentor Daisy. With my project idea, she introduced me few appropriate technologies and libraries to enhance the App presentation. 
 
 Resources helpful to implement specific features:
 * [Pretty-print tabular data in Python](https://pypi.org/project/tabulate/)
