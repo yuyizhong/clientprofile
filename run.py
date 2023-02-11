@@ -50,7 +50,6 @@ def validate_spend(value):
 
 
 def check_client(fname, lname, dob, data):
-
     """Get user input to check if client is exist"""
 
     exist = False
@@ -67,7 +66,6 @@ def check_client(fname, lname, dob, data):
 
 
 def add_client(worksheet):
-
     """1.Add New Client"""
 
     # Get Client's name and D.o.B
@@ -109,7 +107,6 @@ def add_client(worksheet):
 
 
 def search_clients(worksheet):
-
     """2. Search clients and display all the information"""
 
     # Get user to input client's name
@@ -147,7 +144,6 @@ def search_clients(worksheet):
 
 
 def delete_client(worksheet):
-
     """3. Delete client"""
 
     # Get user to input client's name and D.o.B
@@ -189,7 +185,6 @@ def delete_client(worksheet):
 
 
 def update_options(worksheet, fname, lname, index, num):
-
     """ options for user to choose when updating client's basic information"""
     data = worksheet.get_all_values()
     option = data[0][num-1]
@@ -222,7 +217,6 @@ def update_options(worksheet, fname, lname, index, num):
 
 
 def update_client(worksheet):
-
     """4. Update client personal information"""
 
     # Get user to input client's name and D.o.B
@@ -290,7 +284,6 @@ def update_client(worksheet):
 
 
 def get_all_clients(worksheet):
-
     """5. List all the clients' details"""
     # Option to list Regular clients
     # Option to list Vip clients
