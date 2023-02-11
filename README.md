@@ -129,8 +129,11 @@ As a sales person or account manager, users would like to have an easy access to
 ![Edit-client-Y-Y](assets/images/edit-client3.png)
 
 
-
-
+**Operation option 5 - Client List:**
+* If users enter *5* to list group clients, App will provide options of VIP, Regular or All clients.
+![client-List-Vip](assets/images/client-list1.png)
+![client-List-Regular](assets/images/client-list2.png)  
+![client-List-All](assets/images/client-list3.png) 
 
 
 
