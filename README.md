@@ -116,7 +116,7 @@ As a sales person or account manager, users would like to have an easy access to
 
 * For each option of updating, if users enter 'Y', App will confirm the updated value and move to next option.
 * When editing spend, number is required. Otherwise a error message highlighted in red appears until a valid number is entered.
-* After a spend is entered, system would add it to the current total spend for a new total spend. And Client's status will be reviewed and updated if necessary.
+* After a spend is entered, system would add it to the current total spend and generate a new total spend. And Client's status will be reviewed and updated if necessary.
 * Then App will display a statement with the reviewed/updated status and new total spend.
 * After the last option is updated, App exits to main menu for next operation.
 
@@ -133,9 +133,11 @@ As a sales person or account manager, users would like to have an easy access to
 * If users enter *5* to list group clients, App will provide options of VIP, Regular or All clients.
 * After display the required table, App exit to main menu for user to choose next operation.
 
-![client-List-Vip](assets/images/client-list1.png)
-![client-List-Regular](assets/images/client-list2.png)  
-![client-List-All](assets/images/client-list3.png) 
+client-List-Vip <img src="assets/images/client-list1.png">
+
+client-List-Regular <img src="assets/images/client-list2.png">
+
+client-List-All <img src="assets/images/client-list3.png"> 
 
 **Operation option 6 - Exit Clients Profile system:**
 * Users can enter *6* to exit Clients Profile system.
@@ -157,11 +159,106 @@ As a sales person or account manager, users would like to have an easy access to
 
 * [GoogleCloudPlatformUI](https://console.cloud.google.com/welcome?project=clientprofile) was used to activate APIs and generate credentials file.
 * [google.oauth2](https://auth0.com/resources/videos/platform-introduction-video-2020?utm_content=gbrauthentication-authenticationproviders-demovideo&utm_source=google&utm_campaign=emea_uki_gbr_all_ciam-all_dg-ao_auth0_search_google_text_kw_utm2&utm_medium=cpc&utm_term=oauth2-c&utm_id=aNK4z0000004GdLGAU&gclid=CjwKCAiA85efBhBbEiwAD7oLQDdudOzD5zeSs5ZfRrOr6hS-siIiScCZkGS-RLZ2P9542EtzwvkatRoCxfUQAvD_BwE) was installed and imported to authorize the access to clients data spreadsheeet through credentials
-* [Colorama](https://pypi.org/project/colorama/) was used for adding colour to text to increase readability.
-* [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) was used for adding ascii art to App title.
-* [Tabulate](https://pypi.org/project/tabulate/) was used to format a nice table to present the data.
+* [Colorama](https://pypi.org/project/colorama/) was installed and imported for adding colour to text to increase readability.
+* [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) was installed and imported for adding ascii art to App title.
+* [Tabulate](https://pypi.org/project/tabulate/) was installed and imported to format a nice table to present the data.
 * [GoogleDocs](https://docs.google.com/document/u/0/) Where I create online spreadsheet to host clients data.
-* [Gspread](https://docs.gspread.org/en/v5.7.0/) A Python API for Google Sheets.
+* [Gspread](https://docs.gspread.org/en/v5.7.0/) was installed and imported as a Python API for Google Sheets.
 * [GitHub](https://github.com/) has been used to store the code, images, and other contents. 
 * [Heroku](https://dashboard.heroku.com/apps) was used to deploy the App to the web.
 * [Git](https://git-scm.com/) was used to commit and push code during the developement of the App.
+
+
+## Testing
+
+### Testing during development
+* Continuous testing was carried out throughout of the development. The whole project was broken into small sections and steps. Each fuinction was checked and amended to the right standard before moving to the next one. 
+* FlowChart was created before coding. It was used to help creating functions and finding errors.
+* `print()`and `type()` were used throughout of the coding process, to identy the errors. 
+*   Any testing user inputs were printed back to the console to check all functions and methods were correctly applied to the input.
+*   Errors and warnings were fixed as they appeared such as indentation errors, lines too long or extra space issues.  This helped keep the code clean and readable so other errors or bugs that arose were identified more easily.
+
+### Interesting Issues & Bugs Found:
+* I firstly wrote function `check_client` as the below:
+
+
+>    def check_client(fname, lname, dob, data):
+
+>    """Get user input to check if client is exist"""
+
+>    exist = False
+
+>    for i, row in enumerate(data):
+>
+         if row[0] == fname and row[1] == lname and row[2] == dob:
+
+>            print(f"{Back.RED}{Fore.WHITE}Client {fname} "
+>                  f"{lname} is in the system {Style.RESET_ALL}\n")
+
+>            return True, i
+
+>    if not exist:
+
+>        print(f"{Back.RED}{Fore.WHITE}Client {fname}"
+>              f" {lname} is NOT in the system {Style.RESET_ALL}\n")
+
+>        return False
+
+* When I tried to access the return from funbction `check_client` at another function, I received an error message *TypeError: 'bool' object is not subscriptable* when using the below code:
+>    exist = check_client(fname, lname, dob, data):
+
+>        if exist[0] is False:
+* After research, I reliased this error occurs when data is bool and we are indexing it. After few trial and I fund the best way to fix it is to return a dictionary rather than a list. And I can acess the bool by key.
+* Then the solution is as below:
+>    def check_client(fname, lname, dob, data):
+
+>    """Get user input to check if client is exist"""
+
+>    exist = False
+
+>    for i, row in enumerate(data):
+
+>        if row[0] == fname and row[1] == lname and row[2] == dob:
+
+>            print(f"{Back.RED}{Fore.WHITE}Client {fname} "
+>                  f"{lname} is in the system {Style.RESET_ALL}\n")
+
+>            return {"exists": True, "index": i}
+
+>    if not exist:
+
+>        print(f"{Back.RED}{Fore.WHITE}Client {fname}"
+>              f" {lname} is NOT in the system {Style.RESET_ALL}\n")
+
+>        return {"exists": False}
+
+* And I could access through code `if exist["exists"] is False:`
+
+
+
+*   The game was deployed early on in development and checked regularly to ensure game flow and any errors were handled early on.
+
+*   Testing inputs were used to ensure user inputs would be handled correctly and appropriate feedback to the user was shown on screen.  As mentioned above in the Features Section for how user inputs were handled.
+
+    *   User Name:
+    As this will accept anything but nothing entered, the enter key was pressed to ensure error was caught and handled appropriately.
+
+    *   Player Choice:
+    To test capital and small R and P were typed in and also other random inputs such as spaces, other letters, words or numbers to ensure error caught and handled appropriately.
+
+    *   Player Guess:
+    As this will only accept 4 numbers between 1-10 separated by a space, many other combinations of input were tested.  For example, more or fewer numbers were entered, numbers less than 1 or greater than 10 were entered.  Numbers without spaces or extra spaces and also random special characters and no entry at all were all tested to ensure errors were caught and handled appropriately.
+
+    *   Code Hint:
+    The secret code was printed to the terminal during development to help with testing the code hint generated matched the player's guesses.  It was checked to ensure numbers in the correct position generated a GREEN hint and numbers in incorrect position generated an ORANGE hint.  If all 4 numbers were not correct the message in red appeared as expected.
+
+    *   Attempts Left:
+    Attempts left was checked by playing the game through to see if guesses left decreased by 1 each time and also that guesses left did not change if an input error was entered.
+
+    *   Game Won / Game Lost
+    The game was tested on winning and losing to ensure the correct messages were displayed for both.
+
+    * Play Again
+    As mentioned above in the Features section.  To play again the user can type Y or N.  This was tested for lower and uppercase Y and N to check both worked.  Other inputs such as numbers, random words or letters and the enter key pressed were all checked to ensure the errors were handled correctly and appropriate feedback to the user was given.
+
+*   The README.md was proofread, passed through [Grammarly](https://www.grammarly.com/grammar-check) and all links were checked before final submission.
