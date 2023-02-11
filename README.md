@@ -281,3 +281,8 @@ After deployed the app, a dedicated manual testing was carried out as a user at 
     * tabulate and colorama are used here to present the client data in a nice table format.
     * Perform as expected.
 
+### Validator Testing
+
+[pep8 online](http://pep8online.com/) was used for validating the python files.  No errors reported.
+
+![Pep8 Results Screenshot](assets/images/validator.png)
