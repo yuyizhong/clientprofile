@@ -2,7 +2,8 @@
 # import gspread to access and edit the excelsheet
 import gspread
 
-# Authorize the access to client-Book through credentials
+# Authorize the access to client data
+#  stored at online spreadsheet through credentials
 from google.oauth2.service_account import Credentials
 
 # import tabulate to print the data list in a nice table format

@@ -143,3 +143,25 @@ As a sales person or account manager, users would like to have an easy access to
 
 ![Exit](assets/images/exit.png)
 
+### Features Left to Implement
+
+* This App was originally designed to automatically send email to clients at their birthday. Automation email sending is possible. However it requires constantly compare Today to clients' birthday. With the technology we used for this project it is undoable. 
+* I would wish to add this feature to my project at my further learning in Python and extentions.
+
+## Technologies and Libraries Used
+
+* Python was used as the programming language to create the App.
+* [LucidChart](https://www.lucidchart.com/pages/) was used to create the flow chart for control flow. The flow of the App was laid out and structured to aid in the design of the control flow statements such as if-elif-else statements, while loops and for loops.  where the user input validation checks were visually cleared before the code was written.
+
+    ![Flowchart](assets/images/flowchart1.png)
+
+* [GoogleCloudPlatformUI](https://console.cloud.google.com/welcome?project=clientprofile) was used to activate APIs and generate credentials file.
+* [google.oauth2](https://auth0.com/resources/videos/platform-introduction-video-2020?utm_content=gbrauthentication-authenticationproviders-demovideo&utm_source=google&utm_campaign=emea_uki_gbr_all_ciam-all_dg-ao_auth0_search_google_text_kw_utm2&utm_medium=cpc&utm_term=oauth2-c&utm_id=aNK4z0000004GdLGAU&gclid=CjwKCAiA85efBhBbEiwAD7oLQDdudOzD5zeSs5ZfRrOr6hS-siIiScCZkGS-RLZ2P9542EtzwvkatRoCxfUQAvD_BwE) was installed and imported to authorize the access to clients data spreadsheeet through credentials
+* [Colorama](https://pypi.org/project/colorama/) was used for adding colour to text to increase readability.
+* [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) was used for adding ascii art to App title.
+* [Tabulate](https://pypi.org/project/tabulate/) was used to format a nice table to present the data.
+* [GoogleDocs](https://docs.google.com/document/u/0/) Where I create online spreadsheet to host clients data.
+* [Gspread](https://docs.gspread.org/en/v5.7.0/) A Python API for Google Sheets.
+* [GitHub](https://github.com/) has been used to store the code, images, and other contents. 
+* [Heroku](https://dashboard.heroku.com/apps) was used to deploy the App to the web.
+* [Git](https://git-scm.com/) was used to commit and push code during the developement of the App.
