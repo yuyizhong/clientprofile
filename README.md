@@ -107,8 +107,7 @@ As a sales person or account manager, users would like to have an easy access to
 
 **Operation option 4 - Edit Client:**
 * If users enter *4* to edit a client's detail, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
-* After finding the client, system will ask user if they want to edit this client (Y or N). 
-* If users enter 'Y', App will ask if users want to edit updating options one after another(Y or N).
+* After finding the client, system will ask user if they want to edit each personal information one after each other (Y or N). 
 * If users enter 'N' for one of the updating options, it will then move to next one.
 * Spend is the last option and if no edit, system will exit to main menu for next operation.
 
