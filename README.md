@@ -31,7 +31,7 @@ As a sales person or account manager, users would like to have an easy access to
 * This App was designed based on user stores to provide the best dynamic experience. 
 * Further efforts were made to eliminate user input 'value error' which may interrupt normal programming.
 * User Inputs are designed **Not** case-sensitive. No matter what case users input, it won't affect the comparison result. 
-* Improved site readability and user friendly interface. 
+* Colored text and formated data improved site readability and user friendly interface. 
 
 ## Features
 
@@ -56,7 +56,7 @@ As a sales person or account manager, users would like to have an easy access to
 
 
 **Operation option 1 - Add New Client:**
-* If users enter '1' to add a new client, App will ask users to provide information of client's first name, last name and date of birth. 
+* If users enter *1* to add a new client, App will ask users to provide information of client's first name, last name and date of birth. 
 * Those unique information are used to identify if the person entered is already a client. 
 * If **Not** in the system, then further personal information are asked to build the client profile. (eg: contact number, email and spend)
 * When enter the spend amount, a number is required, otherwise an error message appears until a number is entered.
@@ -73,7 +73,7 @@ As a sales person or account manager, users would like to have an easy access to
 
 
 **Operation option 2 - Search Client:**
-* If users enter '2' to search a client to get his/her details, App will ask users to provide information of client's first name and last name.
+* If users enter *2* to search a client to get his/her details, App will ask users to provide information of client's first name and last name.
 * If the name is found, a table containing the client(s)' details is displayed.
 * [Tabulate](https://pypi.org/project/tabulate/) was installed and imported to format python list into nice table. This feature improves users' visual experience.
 * It is very useful when users want to access a client's information for certain purpose. (eg. get the contact details, check total spend or client status)
@@ -89,7 +89,7 @@ As a sales person or account manager, users would like to have an easy access to
 
 
 **Operation option 3 - Delete Client:**
-* If users enter '3' to add a new client, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
+* If users enter *3* to delete a client, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
 * After finding the client, system will ask user if they want to delete this client (Y or N). 
 * If users enter 'N', App will confirm the decision and exit to main menu.
 
@@ -105,8 +105,29 @@ As a sales person or account manager, users would like to have an easy access to
 
 ![Delete-client-Y](assets/images/delete-client3.png)
 
+**Operation option 4 - Edit Client:**
+* If users enter *4* to edit a client's detail, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
+* After finding the client, system will ask user if they want to edit this client (Y or N). 
+* If users enter 'Y', App will ask if users want to edit updating options one after another(Y or N).
+* If users enter 'N' for one of the updating options, it will then move to next one.
+* Spend is the last option and if no edit, system will exit to main menu for next operation.
 
+![Edit-client-Y-N](assets/images/edit-client1-1.png)
+![Edit-client-Y-N](assets/images/edit-client1-2.png)
 
+* For each option of updating, if users enter 'Y', App will confirm the updated value and move to next option.
+* When editing spend, number is required. Otherwise a error message highlighted in red appears until a valid number is entered.
+* After a spend is entered, system would add it to the current total spend for a new total spend. And Client's status will be reviewed and updated if necessary.
+* Then App will display a statement with the reviewed/updated status and new total spend.
+* After the last option is updated, App exits to main menu for next operation.
+
+![Edit-client-Y-Y](assets/images/edit-client2-1.png)
+![Edit-client-Y-Y](assets/images/edit-client2-2.png)
+![Edit-client-Y-Y](assets/images/edit-client2-3.png)
+
+* If the person entered is not found in the system, App will inform users and exit to main menu.
+ 
+![Edit-client-Y-Y](assets/images/edit-client3.png)
 
 
 
