@@ -30,7 +30,7 @@ As a sales person or account manager, users would like to have an easy access to
 ### Site Goal
 * This App was designed based on user stores to provide the best dynamic experience. 
 * Further efforts were made to eliminate user input 'value error' which may interrupt normal programming.
-* User Inputs are designed **Not** case-sensitive. No matter what case users input, it won't affect the comparison result. 
+* User Inputs are designed **Not** case-sensitive. No matter what case users put in, it won't affect the comparison result. 
 * Colored text and formated data improved site readability and user friendly interface. 
 
 ## Features
@@ -60,7 +60,7 @@ As a sales person or account manager, users would like to have an easy access to
 * Those unique information are used to identify if the person entered is already a client. 
 * If **Not** in the system, then further personal information are asked to build the client profile. (eg: contact number, email and spend)
 * When enter the spend amount, a number is required, otherwise an error message appears until a number is entered.
-* Then the entered spend is viewed. If it is more than 35k, this new client is classified as VIP, otherwise Regular in status.
+* Then the entered spend is reviewed. If it is more than 35k, this new client is classified as VIP, otherwise Regular in status.
 * After confirmation of adding the client to the system, main menu is loaded again for next operation.
 
 ![Add-Client-1](assets/images/add-client1-1.png)
@@ -73,12 +73,12 @@ As a sales person or account manager, users would like to have an easy access to
 
 
 **Operation option 2 - Search Client:**
-* If users enter *2* to search a client to get his/her details, App will ask users to provide information of client's first name and last name.
-* If the name is found, a table containing the client(s)' details is displayed.
+* If users enter *2* to search a client to get personal details, App will ask users to provide information of client's first name and last name.
+* If the name is found, a table containing the client(s)' details are displayed.
 * [Tabulate](https://pypi.org/project/tabulate/) was installed and imported to format python list into nice table. This feature improves users' visual experience.
 * It is very useful when users want to access a client's information for certain purpose. (eg. get the contact details, check total spend or client status)
-* It also can be used to find the date of birth, before users delete client or edit a client's detail. 
-* If there are multiple clients having a same name, all of them will be listed in the table.
+* It also can be used to find the date of birth, before users delete client or edit a client's details. 
+* If there are multiple clients sharing a same name, all of them will be listed in the table.
 
 ![Search-Client](assets/images/search-client1.png)
 
@@ -106,7 +106,7 @@ As a sales person or account manager, users would like to have an easy access to
 ![Delete-client-Y](assets/images/delete-client3.png)
 
 **Operation option 4 - Edit Client:**
-* If users enter *4* to edit a client's detail, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
+* If users enter *4* to edit a client's details, App will ask users to provide information of client's first name, last name and date of birth in order to allocate the particular client.
 * After finding the client, system will ask user if they want to edit each personal information one after each other (Y or N). 
 * If users enter 'N' for one of the updating options, it will then move to next one.
 * Spend is the last option and if no edit, system will exit to main menu for next operation.
@@ -115,7 +115,7 @@ As a sales person or account manager, users would like to have an easy access to
 ![Edit-client-Y-N](assets/images/edit-client1-2.png)
 
 * For each option of updating, if users enter 'Y', App will confirm the updated value and move to next option.
-* When editing spend, number is required. Otherwise a error message highlighted in red appears until a valid number is entered.
+* When editing spend, number is required. Otherwise an error message highlighted in red appears until a valid number is entered.
 * After a spend is entered, system would add it to the current total spend and generate a new total spend. And Client's status will be reviewed and updated if necessary.
 * Then App will display a statement with the reviewed/updated status and new total spend.
 * After the last option is updated, App exits to main menu for next operation.
@@ -147,8 +147,8 @@ client-List-All <img src="assets/images/client-list3.png">
 
 ### Features Left to Implement
 
-* This App was originally designed to automatically send email to clients at their birthday. Automation email sending is possible. However it requires constantly compare Today to clients' birthday. With the technology we used for this project it is undoable. 
-* I would wish to add this feature to my project at my further learning in Python and extensions.
+* This App was originally designed to automatically send email to clients at their birthday. Automation email sending is possible. However it requires constantly comparison between Today to clients' birthday. With the basic Python technology we used for this project it is undoable. 
+* I would like to add this feature to the project at my further learning in Python and extensions.
 
 ## Technologies and Libraries Used
 
@@ -163,7 +163,7 @@ The actual flowchart can be viewed [here](https://lucid.app/lucidchart/invitatio
 * [Colorama](https://pypi.org/project/colorama/) was installed and imported for adding colour to text to increase readability.
 * [Pyfiglet](https://pypi.org/project/pyfiglet/0.7/) was installed and imported for adding ascii art to App title.
 * [Tabulate](https://pypi.org/project/tabulate/) was installed and imported to format a nice table to present the data.
-* [GoogleDocs](https://docs.google.com/document/u/0/) Where I create online spreadsheet to host clients data.
+* [GoogleDocs](https://docs.google.com/document/u/0/) was used to create online spreadsheet to host clients data.
 * [Gspread](https://docs.gspread.org/en/v5.7.0/) was installed and imported as a Python API for Google Sheets.
 * [GitHub](https://github.com/) has been used to store the code, images, and other contents. 
 * [Heroku](https://dashboard.heroku.com/apps) was used to deploy the App to the web.
@@ -177,7 +177,6 @@ The actual flowchart can be viewed [here](https://lucid.app/lucidchart/invitatio
 * [FlowChart](https://lucid.app/lucidchart/invitations/accept/inv_784b90d4-5035-47fc-a4f8-026dd960e23b) was created before coding. It was used to help creating functions and finding errors.
 * `print()`and `type()` were used throughout of the coding process, to identify the errors. 
 *   Any testing user inputs were printed back to the console to check all functions and methods were correctly applied to the input.
-*   Errors and warnings were fixed as they appeared such as indentation errors, lines too long or extra space issues.  This helped keep the code clean and readable so other errors or bugs that arose were identified more easily.
 
 ### Interesting Issues & Bugs Found:
 * I firstly wrote function `check_client` as the below:
@@ -241,7 +240,7 @@ The actual flowchart can be viewed [here](https://lucid.app/lucidchart/invitatio
 
 ### Functional Testing
 
-After deployed the app, a dedicated manual testing was carried out as a user at Heroku terminal. Each menu option was tested with all the possible scenarios and particular intention to user input case sensitivity and value validation. The client database spreadsheet was closely monitored to check if any changes made by users through App were registered.
+After deployed the app, a dedicated manual testing was carried out as a user at Heroku terminal. Each menu option was tested with all the possible scenarios and particular intention to user input case sensitivity and value validation. The client database spreadsheet was closely monitored to check if any changes made by users through App were registered there.
 
 * `operation()`
 
@@ -259,7 +258,7 @@ After deployed the app, a dedicated manual testing was carried out as a user at 
     * `Check_client()` should work at the early stage to check if the person entered already in the system. 
     * `validate_spend()` is to validate the 'spend' entered by users to avoid value error which would cause unnecessary interruption. A while loop used here to make sure a valid 'spend' is enter before next step.
     * The validated spend then used as a reference for client status. Computer will then give the client entered either Vip or Regular as their status accordingly.
-    * * After the adding is confirmed, check client database the online spreadsheet if client information and status are correctly added there.
+    * After adding client  is confirmed, check client database (the online spreadsheet) if client information and status are correctly added there.
     * Perform as expected.
 
 * `search_clients()`:
